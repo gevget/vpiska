@@ -1,0 +1,6 @@
+{
+  "name": "Digital Вписка — Партнёры",
+  "description": "Закрытая интерактивная страница партнерских возможностей для главного детокс-afterparty digital & tech лидеров. Сфокусированные офферы для ЛПР, калькулятор интеграций, аналитика и бронирование.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
