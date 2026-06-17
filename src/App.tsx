@@ -8,6 +8,7 @@ import { GALLERY_PHOTOS } from "./data";
 // Components
 import StructuredData from "./components/StructuredData";
 import { useEditorOverrides } from "./editor/useEditorOverrides";
+import { withBase } from "./lib/asset";
 const Typewriter = lazy(() => import("./components/Typewriter"));
 const EcosystemDashboard = lazy(() => import("./components/EcosystemDashboard"));
 const AtmosphereGallery = lazy(() => import("./components/AtmosphereGallery"));
@@ -167,7 +168,7 @@ export default function App() {
         >
           <div className="absolute inset-0 z-0">
             <img
-              src="/images/hero_vpiska_cyberpunk_1781210331272.jpg"
+              src={withBase("/images/hero_vpiska_cyberpunk_1781210331272.jpg")}
               alt="Digital Вписка Atmosphere"
               className="w-full h-full object-cover opacity-25 scale-105"
             />

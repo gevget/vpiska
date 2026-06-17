@@ -1,5 +1,7 @@
 // Pure original content from the Digital Вписка partnership document.
 
+import { withBase } from "./lib/asset";
+
 export interface ComparisonItem {
   feature: string;
   conference: string;
@@ -330,7 +332,7 @@ export const LIFESTYLE_COMMUNITIES = [
 
 export const GALLERY_PHOTOS = [
   {
-    src: "/images/gallery_live_perf_1781201682778.jpg",
+    src: withBase("/images/gallery_live_perf_1781201682778.jpg"),
     alt: "Сцена Digital Вписки",
     title: "Живой концерт на сцене",
     category: "Выступления",
@@ -338,7 +340,7 @@ export const GALLERY_PHOTOS = [
     stats: "450+ зрителей // 100% фокус внимания"
   },
   {
-    src: "/images/gallery_ceo_stage_1781201699403.jpg",
+    src: withBase("/images/gallery_ceo_stage_1781201699403.jpg"),
     alt: "Спикеры под софитами",
     title: "Шоу лидеров индустрии",
     category: "Выступления",
@@ -346,7 +348,7 @@ export const GALLERY_PHOTOS = [
     stats: "Пиковая вовлеченность аудитории"
   },
   {
-    src: "/images/gallery_networking_bar_1781201714837.jpg",
+    src: withBase("/images/gallery_networking_bar_1781201714837.jpg"),
     alt: "Профессиональный ЛПР нетворкинг",
     title: "Премиальный B2B лобби-бар",
     category: "Нетворкинг",
@@ -354,7 +356,7 @@ export const GALLERY_PHOTOS = [
     stats: "CEO, Founders & Директора // Без галстуков"
   },
   {
-    src: "/images/gallery_vip_lounge_1781202125734.jpg",
+    src: withBase("/images/gallery_vip_lounge_1781202125734.jpg"),
     alt: "Пространство VIP Lounge",
     title: "Закрытый VIP лаундж-холл",
     category: "Нетворкинг",
@@ -362,7 +364,7 @@ export const GALLERY_PHOTOS = [
     stats: "80+ активных лид-контактов"
   },
   {
-    src: "/images/gallery_backstage_stage_1781202140149.jpg",
+    src: withBase("/images/gallery_backstage_stage_1781202140149.jpg"),
     alt: "Аппаратура и музыкальный сет",
     title: "Профессиональный бэкстейдж",
     category: "Выступления",

@@ -1,5 +1,6 @@
 import React from "react";
 import { TEAM_MEMBERS } from "../data";
+import { withBase } from "../lib/asset";
 
 const TeamBlock = () => {
   return (
@@ -21,10 +22,10 @@ const TeamBlock = () => {
                 <img
                   src={
                     member.name.includes("Александр") 
-                      ? "/images/team_alexander_ceo_1781202081739.jpg"
+                      ? withBase("/images/team_alexander_ceo_1781202081739.jpg")
                       : member.name.includes("Вадим")
-                      ? "/images/team_vadim_promoter_1781202096819.jpg"
-                      : "/images/team_evgeny_designer_1781202110678.jpg"
+                      ? withBase("/images/team_vadim_promoter_1781202096819.jpg")
+                      : withBase("/images/team_evgeny_designer_1781202110678.jpg")
                   }
                   alt={member.name}
                   loading="lazy"
