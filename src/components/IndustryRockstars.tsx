@@ -87,9 +87,6 @@ const IndustryRockstars = () => {
   const section = useEditorOverrides("industry-rockstars-section");
   const eyebrow = useEditorOverrides("industry-rockstars-eyebrow", { text: "LIVE LINEUP // PEOPLE ON STAGE" });
   const title = useEditorOverrides("industry-rockstars-title", { text: "ЛЮДИ ИНДУСТРИИ\nСТАНОВЯТСЯ\nРОК-ЗВЁЗДАМИ" });
-  const signature = useEditorOverrides("industry-rockstars-signature", {
-    text: "Проект создаётся совместно с экс-амбассадором Digital-квартирников Вадимом Акимовым.",
-  });
 
   return (
     <section id="industry-rockstars" {...section.bind} style={section.style} className="w-full border-b border-zinc-800 bg-[#050505] px-6 py-24 sm:px-12 lg:px-20 xl:px-32 xl:py-36">
@@ -115,10 +112,6 @@ const IndustryRockstars = () => {
               <RockstarsStat key={item.label} value={item.value} label={item.label} index={index} />
             ))}
           </div>
-
-          <p {...signature.bind} style={signature.style} className="max-w-2xl border-l-2 border-[#BEEB08] pl-5 text-sm leading-relaxed text-zinc-400 sm:text-base">
-            {signature.text}
-          </p>
         </div>
 
         <div className="grid gap-4 sm:grid-cols-2">
