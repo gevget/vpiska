@@ -1,116 +1,133 @@
 import React from "react";
 import { motion } from "motion/react";
-import { ECOSYSTEM_STATISTICS, PROFESSIONAL_COMMUNITIES, LIFESTYLE_COMMUNITIES } from "../data";
-import { Users, BarChart, Target as TargetIcon, Zap, Palette, Search, Briefcase, FileText, Calendar, HelpCircle, Utensils, Heart, Plane, User, Wind, ChefHat, Gamepad, Coffee, Brush, Map, Wine, Theater, Music, BookOpen, Trophy, Grid, Activity, Dog, Baby, Thermometer, Smile, Mic, Dices, ShoppingBag, History } from "lucide-react";
+import { ECOSYSTEM_STATISTICS } from "../data";
+import { Megaphone, Radio, Send, Clapperboard, Star, Layers3 } from "lucide-react";
+import { useEditorOverrides } from "../editor/useEditorOverrides";
 
-export const IconResolver = ({ name, className }: { name: string; className?: string }) => {
-  const icons: Record<string, React.ElementType> = {
-    Users, BarChart, Target: TargetIcon, Zap, Palette, Search, Briefcase, FileText, Calendar,
-    Utensils, Heart, Plane, User, Wind, ChefHat, Gamepad, Coffee, Brush, Map, Wine, Theater,
-    Music, BookOpen, Trophy, Grid, Activity, Dog, Baby, Thermometer, Smile, Mic, Dices,
-    ShoppingBag, History
-  };
-  const IconNode = icons[name] || HelpCircle;
-  return <IconNode className={className} />;
-};
+const MEDIA_ITEMS = [
+  {
+    title: "Охваты",
+    value: ECOSYSTEM_STATISTICS.totalSubscriptions,
+    note: "совокупный медийный охват экосистемы",
+    icon: Megaphone,
+    accent: "text-[#00FF41]",
+  },
+  {
+    title: "Сообщества",
+    value: ECOSYSTEM_STATISTICS.thematicCommunities,
+    note: "тематических клубов внутри Digital Club",
+    icon: Layers3,
+    accent: "text-white",
+  },
+  {
+    title: "Telegram",
+    value: ECOSYSTEM_STATISTICS.mainClubMembers,
+    note: "ядро главного Telegram-сообщества",
+    icon: Send,
+    accent: "text-[#FF007F]",
+  },
+  {
+    title: "Контент",
+    value: ECOSYSTEM_STATISTICS.monthlyPosts,
+    note: "публикаций и анонсов в месяц",
+    icon: Clapperboard,
+    accent: "text-white",
+  },
+  {
+    title: "Digital Club",
+    value: "24/7",
+    note: "площадка, через которую бренд живет дольше вечера",
+    icon: Star,
+    accent: "text-[#00FF41]",
+  },
+  {
+    title: "Медийные возможности",
+    value: "360°",
+    note: "анонсы, Telegram, интеграции, контент и партнерские касания",
+    icon: Radio,
+    accent: "text-[#FF007F]",
+  },
+];
+
+function MediaCard({
+  title,
+  value,
+  note,
+  icon: Icon,
+  accent,
+  index,
+}: {
+  key?: React.Key;
+  title: string;
+  value: string;
+  note: string;
+  icon: React.ElementType;
+  accent: string;
+  index: number;
+}) {
+  const card = useEditorOverrides(`ecosystem-card-${index + 1}`);
+  const cardTitle = useEditorOverrides(`ecosystem-card-${index + 1}-title`, { text: title });
+  const cardValue = useEditorOverrides(`ecosystem-card-${index + 1}-value`, { text: value });
+  const cardNote = useEditorOverrides(`ecosystem-card-${index + 1}-note`, { text: note });
+
+  return (
+    <motion.div
+      initial={{ opacity: 0, y: 16 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true }}
+      transition={{ delay: index * 0.05 }}
+      {...card.bind}
+      style={card.style}
+      className="group border border-zinc-900 bg-black p-7 transition-colors duration-300 hover:border-[#00FF41]/30"
+    >
+      <div className="mb-10 flex items-start justify-between gap-4">
+        <span {...cardTitle.bind} style={cardTitle.style} className="font-mono text-[10px] font-black uppercase tracking-[0.35em] text-zinc-600">
+          {cardTitle.text}
+        </span>
+        <Icon className={`h-5 w-5 ${accent}`} />
+      </div>
+      <div {...cardValue.bind} style={cardValue.style} className={`text-5xl font-display font-black leading-none tracking-tight sm:text-6xl ${accent}`}>
+        {cardValue.text}
+      </div>
+      <p {...cardNote.bind} style={cardNote.style} className="mt-4 max-w-[24ch] text-sm leading-relaxed text-zinc-500">
+        {cardNote.text}
+      </p>
+    </motion.div>
+  );
+}
 
 const EcosystemDashboard = () => {
+  const section = useEditorOverrides("ecosystem-section");
+  const eyebrow = useEditorOverrides("ecosystem-eyebrow", { text: "MEDIA ENGINE // DIGITAL CLUB" });
+  const title = useEditorOverrides("ecosystem-title", { text: "МЕДИЙНЫЕ\nВОЗМОЖНОСТИ" });
+  const description = useEditorOverrides("ecosystem-description", {
+    text: "Один блок вместо двух: здесь собраны все ключевые ресурсы продвижения, которые партнер получает через экосистему Digital Club.",
+  });
+
   return (
-    <section className="w-full py-20 px-4 sm:px-12 lg:px-24 xl:px-48 border-b border-zinc-900 bg-[#050505] relative overflow-hidden" id="ecosystem">
-      <div className="w-full max-w-[2000px] mx-auto z-10 relative">
-        <div className="flex flex-col lg:flex-row items-center justify-between gap-12 lg:gap-24 mb-20 lg:mb-32">
-          <div className="max-w-2xl text-center lg:text-left space-y-8">
-             <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              className="inline-block px-4 py-1.5 bg-[#00FF41]/10 border border-[#00FF41]/20 rounded-full"
-            >
-              <span className="text-[10px] font-mono text-[#00FF41] uppercase tracking-[0.2em] font-black">
-                Экосистема Digital Club
-              </span>
-            </motion.div>
-            <motion.h2 
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: 0.1 }}
-              className="text-4xl sm:text-6xl lg:text-7xl font-display font-black text-white uppercase leading-none tracking-tighter"
-            >
-              МЕДИЙНЫЙ <br /> <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#00FF41] to-[#FF007F]">КАПИТАЛ</span>
-            </motion.h2>
-            <motion.p 
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: 0.2 }}
-              className="text-lg sm:text-2xl text-zinc-400 font-sans leading-relaxed"
-            >
-              Digital Вписка — это не просто ивент, это точка сборки 35+ тематических сообществ с общей аудиторией 35 000+ профессионалов.
-            </motion.p>
-          </div>
-          
-          <div className="grid grid-cols-2 gap-4 sm:gap-6 w-full lg:w-auto">
-            <div className="space-y-4 sm:space-y-6">
-              <div className="p-6 sm:p-8 bg-zinc-950 border border-zinc-900 flex flex-col justify-between h-40 sm:h-48 group hover:border-[#00FF41]/30 transition-colors">
-                <span className="text-xs font-mono text-zinc-500 uppercase">Подписки</span>
-                <span className="text-3xl sm:text-5xl font-mono text-white font-black">{ECOSYSTEM_STATISTICS.totalSubscriptions}</span>
-              </div>
-              <div className="p-6 sm:p-8 bg-black border border-zinc-900 flex flex-col justify-between h-40 sm:h-48 group hover:border-[#FF007F]/30 transition-colors">
-                <span className="text-xs font-mono text-zinc-500 uppercase">Участники</span>
-                <span className="text-3xl sm:text-5xl font-mono text-white font-black">{ECOSYSTEM_STATISTICS.uniqueParticipants}</span>
-              </div>
-            </div>
-            <div className="space-y-4 sm:space-y-6 mt-8 sm:mt-12">
-              <div className="p-6 sm:p-8 bg-black border border-zinc-900 flex flex-col justify-between h-40 sm:h-48 group hover:border-[#00FF41]/30 transition-colors">
-                <span className="text-xs font-mono text-zinc-500 uppercase">Сообщества</span>
-                <span className="text-3xl sm:text-5xl font-mono text-white font-black">{ECOSYSTEM_STATISTICS.thematicCommunities}</span>
-              </div>
-              <div className="p-6 sm:p-8 bg-zinc-950 border border-zinc-900 flex flex-col justify-between h-40 sm:h-48 group hover:border-[#FF007F]/30 transition-colors">
-                <span className="text-xs font-mono text-zinc-500 uppercase">Ожидаем</span>
-                <span className="text-3xl sm:text-5xl font-mono text-white font-black">{ECOSYSTEM_STATISTICS.expectedGuests}</span>
-              </div>
-            </div>
-          </div>
+    <section
+      id="ecosystem"
+      {...section.bind}
+      style={section.style}
+      className="w-full border-b border-zinc-900 bg-[#050505] px-6 py-24 sm:px-12 lg:px-20 xl:px-32 xl:py-32"
+    >
+      <div className="mx-auto w-full max-w-[2000px]">
+        <div className="mb-14 flex max-w-4xl flex-col gap-6">
+          <span {...eyebrow.bind} style={eyebrow.style} className="inline-block w-fit border border-[#00FF41]/20 bg-[#00FF41]/10 px-4 py-2 font-mono text-[10px] font-black uppercase tracking-[0.4em] text-[#00FF41]">
+            {eyebrow.text}
+          </span>
+          <h2 {...title.bind} style={title.style} className="whitespace-pre-line text-4xl font-display font-black uppercase leading-none tracking-tighter text-white sm:text-6xl lg:text-7xl">
+            {title.text}
+          </h2>
+          <p {...description.bind} style={description.style} className="max-w-2xl text-base leading-relaxed text-zinc-400 sm:text-lg">
+            {description.text}
+          </p>
         </div>
 
-        <div className="space-y-16">
-          <div className="space-y-6">
-            <div className="flex items-center gap-4">
-              <div className="h-px flex-grow bg-zinc-900"></div>
-              <h3 className="text-xs sm:text-sm font-mono text-zinc-500 uppercase tracking-[0.5em] font-black">Профессиональные сообщества (подписчики)</h3>
-              <div className="h-px flex-grow bg-zinc-900"></div>
-            </div>
-            <div className="flex overflow-x-auto pb-6 -mx-4 px-4 lg:mx-0 lg:px-0 lg:flex-wrap lg:justify-center gap-3 sm:gap-4 hide-scrollbar">
-              {PROFESSIONAL_COMMUNITIES.map((node, index) => (
-                <div key={index} className="min-w-[240px] sm:min-w-[280px] lg:min-w-0 px-4 py-3 bg-zinc-950 border border-zinc-800 flex items-center gap-4 group hover:border-[#00FF41]/40 transition-all hover:bg-zinc-900/50">
-                  <IconResolver name={node.icon} className="w-6 h-6 text-[#00FF41]/60 group-hover:text-[#00FF41] transition-colors" />
-                  <span className="text-sm font-mono text-zinc-400 group-hover:text-white transition-colors uppercase tracking-widest font-medium whitespace-nowrap">{node.name}</span>
-                  <div className="h-5 w-px bg-zinc-800 shrink-0"></div>
-                  <div className="flex items-baseline gap-1">
-                    <span className="text-xs font-mono text-[#00FF41] tabular-nums font-black leading-none">{node.count.toLocaleString()}</span>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-
-          <div className="space-y-6">
-            <div className="flex items-center gap-4">
-              <div className="h-px flex-grow bg-zinc-900"></div>
-              <h3 className="text-xs sm:text-sm font-mono text-zinc-500 uppercase tracking-[0.5em] font-black">Лайфстайл сообщества (подписчики)</h3>
-              <div className="h-px flex-grow bg-zinc-900"></div>
-            </div>
-            <div className="flex overflow-x-auto pb-6 -mx-4 px-4 lg:mx-0 lg:px-0 lg:flex-wrap lg:justify-center gap-2 sm:gap-3 hide-scrollbar">
-              {LIFESTYLE_COMMUNITIES.map((node, index) => (
-                <div key={index} className="min-w-[200px] sm:min-w-[240px] lg:min-w-0 px-5 py-2.5 bg-black border border-zinc-900 flex items-center gap-3 group hover:border-[#FF007F]/30 transition-all hover:bg-zinc-900/30">
-                  <IconResolver name={node.icon} className="w-5 h-5 text-[#FF007F]/40 group-hover:text-[#FF007F] transition-colors" />
-                  <span className="text-xs sm:text-sm font-mono text-zinc-500 group-hover:text-white transition-colors whitespace-nowrap">{node.name}</span>
-                  <span className="text-xs font-mono text-[#FF007F] tabular-nums font-black">+{node.count}</span>
-                </div>
-              ))}
-            </div>
-          </div>
+        <div className="grid grid-cols-1 gap-4 md:grid-cols-2 xl:grid-cols-3">
+          {MEDIA_ITEMS.map((item, index) => (
+            <MediaCard key={item.title} {...item} index={index} />
+          ))}
         </div>
       </div>
     </section>

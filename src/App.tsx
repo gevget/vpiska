@@ -1,15 +1,10 @@
 import React, { useState, useEffect, Suspense, lazy } from "react";
-import { motion, AnimatePresence } from "motion/react";
-import { Zap, ExternalLink, Type, Volume2, VolumeX } from "lucide-react";
+import { motion } from "motion/react";
 
-// Data
-import { GALLERY_PHOTOS } from "./data";
-
-// Components
+import { HERO_EVENT_PHOTO, TOP_TAPE_EVENT_PHOTOS } from "./data";
 import StructuredData from "./components/StructuredData";
 import { useEditorOverrides } from "./editor/useEditorOverrides";
-import { withBase } from "./lib/asset";
-const Typewriter = lazy(() => import("./components/Typewriter"));
+
 const EcosystemDashboard = lazy(() => import("./components/EcosystemDashboard"));
 const AtmosphereGallery = lazy(() => import("./components/AtmosphereGallery"));
 const ComparisonBlock = lazy(() => import("./components/ComparisonBlock"));
@@ -22,6 +17,7 @@ const VibeBlock = lazy(() => import("./components/VibeBlock"));
 const LeadModal = lazy(() => import("./components/LeadModal"));
 const EveningProtocol = lazy(() => import("./components/EveningProtocol"));
 const BenefitsBlock = lazy(() => import("./components/BenefitsBlock"));
+const IndustryRockstars = lazy(() => import("./components/IndustryRockstars"));
 const UseCases = lazy(() => import("./components/UseCases"));
 const PartnerArsenal = lazy(() => import("./components/PartnerArsenal"));
 
@@ -37,7 +33,7 @@ export default function App() {
   const [lightboxPhoto, setLightboxPhoto] = useState<any>(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [modalContext, setModalContext] = useState("");
-  const [isAudioActive, setIsAudioActive] = useState(false);
+  const [isAudioActive] = useState(false);
   const [currentTime, setCurrentTime] = useState("");
 
   useEffect(() => {
@@ -53,19 +49,19 @@ export default function App() {
       try {
         const formatter = new Intl.DateTimeFormat("ru-RU", options);
         setCurrentTime(formatter.format(now));
-      } catch (err) {
+      } catch {
         const hh = String(now.getHours()).padStart(2, "0");
         const mm = String(now.getMinutes()).padStart(2, "0");
         const ss = String(now.getSeconds()).padStart(2, "0");
         setCurrentTime(`${hh}:${mm}:${ss}`);
       }
     };
+
     updateTime();
     const interval = setInterval(updateTime, 1000);
     return () => clearInterval(interval);
   }, []);
 
-  // Audio Engine
   useEffect(() => {
     let ctx: AudioContext | null = null;
     let oscillators: OscillatorNode[] = [];
@@ -92,6 +88,7 @@ export default function App() {
         lfo.connect(lfoGain);
         lfoGain.connect(filter.frequency);
         lfo.start();
+
         const triadNotes = [110.0, 164.81, 220.0, 261.63, 329.63, 392.0];
         triadNotes.forEach((freq, idx) => {
           const osc = ctx!.createOscillator();
@@ -105,6 +102,7 @@ export default function App() {
           osc.start();
           oscillators.push(osc);
         });
+
         filter.connect(mainGain);
         mainGain.connect(ctx.destination);
       } catch (e) {
@@ -121,12 +119,13 @@ export default function App() {
             oscillators.forEach((osc) => {
               try {
                 osc.stop();
-              } catch (e) {}
+              } catch {}
             });
-            if (lfo)
+            if (lfo) {
               try {
                 lfo.stop();
-              } catch (e) {}
+              } catch {}
+            }
             if (ctx && ctx.state !== "closed") ctx.close();
           }, 450);
         } catch (e) {
@@ -146,20 +145,15 @@ export default function App() {
   const heroSubtitle = useEditorOverrides("hero-subtitle", {
     text: "by Digital Club // Главное музыкальное B2B-событие года — Digital Вписка. Осень 2026.",
   });
-  const heroCta = useEditorOverrides("hero-cta", { text: "СТАТЬ ПАРТНЁРОМ →" });
-  const heroStatus = useEditorOverrides("hero-status", { text: "1 СЛОТ ГЕНЕРАЛА ДОСТУПЕН" });
-  const footerTitle = useEditorOverrides("footer-title", {
-    text: "ГОТОВЫ ИНТЕГРИРОВАТЬ СВОЙ БРЕНД?",
-  });
+  const heroCta = useEditorOverrides("hero-cta", { text: "Стать партнёром →" });
+  const heroStatus = useEditorOverrides("hero-status", { text: "1 слот генерала доступен" });
 
   return (
     <div className="min-h-screen bg-[#050505] text-white font-sans selection:bg-[#FF007F] selection:text-[#050505] noise-overlay relative overflow-x-hidden scroll-smooth">
       <StructuredData />
-
       <Header />
 
       <main>
-        {/* HERO */}
         <section
           id="hero"
           {...heroSection.bind}
@@ -167,12 +161,8 @@ export default function App() {
           className="w-full relative min-h-[85vh] flex items-center border-b border-zinc-900 overflow-hidden"
         >
           <div className="absolute inset-0 z-0">
-            <img
-              src={withBase("/images/hero_vpiska_cyberpunk_1781210331272.jpg")}
-              alt="Digital Вписка Atmosphere"
-              className="w-full h-full object-cover opacity-25 scale-105"
-            />
-            <div className="absolute inset-0 bg-gradient-to-t from-[#050505] via-transparent to-[#050505]"></div>
+            <img src={HERO_EVENT_PHOTO} alt="Digital Вписка Atmosphere" className="w-full h-full object-cover opacity-35 scale-105" />
+            <div className="absolute inset-0 bg-gradient-to-t from-[#050505] via-black/20 to-[#050505]" />
           </div>
 
           <div className="w-full max-w-[2000px] mx-auto px-6 sm:px-12 lg:px-24 relative z-10 py-20">
@@ -192,7 +182,7 @@ export default function App() {
                 <p
                   {...heroSubtitle.bind}
                   style={heroSubtitle.style}
-                  className="text-lg sm:text-xl font-mono text-zinc-400 uppercase tracking-[0.2em] max-w-2xl leading-relaxed"
+                  className="text-lg sm:text-xl font-mono text-zinc-300 uppercase tracking-[0.2em] max-w-2xl leading-relaxed"
                 >
                   {heroSubtitle.text}
                 </p>
@@ -209,7 +199,7 @@ export default function App() {
                 </button>
                 <div className="flex items-center gap-4 p-4 bg-black/40 border border-zinc-800 backdrop-blur-sm">
                   <div className="w-10 h-10 rounded-full border border-[#00FF41]/20 flex items-center justify-center">
-                    <span className="w-1.5 h-1.5 rounded-full bg-[#00FF41] animate-ping"></span>
+                    <span className="w-1.5 h-1.5 rounded-full bg-[#00FF41] animate-ping" />
                   </div>
                   <div>
                     <span className="block text-[10px] text-zinc-500 uppercase font-black tracking-widest">STATUS:</span>
@@ -227,10 +217,9 @@ export default function App() {
           </div>
         </section>
 
-        {/* INFINITE TAPE 1 */}
         <div className="w-full overflow-hidden border-b border-zinc-900 bg-black py-8">
           <motion.div className="flex whitespace-nowrap gap-6" animate={{ x: ["0%", "-50%"] }} transition={{ duration: 100, repeat: Infinity, ease: "linear" }}>
-            {[...GALLERY_PHOTOS, ...GALLERY_PHOTOS].map((p, i) => (
+            {[...TOP_TAPE_EVENT_PHOTOS, ...TOP_TAPE_EVENT_PHOTOS, ...TOP_TAPE_EVENT_PHOTOS].map((p, i) => (
               <div key={i} className="w-[350px] aspect-[16/9] flex-shrink-0 border border-zinc-900 grayscale opacity-40 hover:opacity-100 hover:grayscale-0 transition-all duration-700">
                 <img src={p.src} alt={p.alt} loading="lazy" className="w-full h-full object-cover" />
               </div>
@@ -240,6 +229,7 @@ export default function App() {
 
         <Suspense fallback={<SectionFallback />}>
           <BenefitsBlock />
+          <IndustryRockstars />
           <EcosystemDashboard />
           <UseCases />
           <PartnerArsenal />
@@ -265,18 +255,23 @@ export default function App() {
 
       <footer className="py-20 px-6 sm:px-12 border-t border-zinc-900 bg-black text-center space-y-10">
         <div className="max-w-2xl mx-auto space-y-6">
-          <h2
-            {...footerTitle.bind}
-            style={footerTitle.style}
-            className="text-2xl font-display font-black uppercase tracking-tight"
-          >
-            {footerTitle.text}
-          </h2>
-          <p className="text-sm font-mono text-zinc-500 uppercase tracking-widest">B2B Координация проекта: Вадим Акимов, Александр Козаченко, Евгений Гетман.</p>
+          <p className="text-sm font-mono text-zinc-500 uppercase tracking-widest">
+            B2B координация проекта: Вадим Акимов, Александр Кубанейшвили, Евгений Толченков.
+          </p>
         </div>
-        <div className="flex justify-center gap-8">
-          <a href="https://digitalclub.ru" target="_blank" rel="noopener noreferrer" className="text-[10px] font-mono text-zinc-700 hover:text-[#00FF41] transition-colors border border-zinc-900 px-4 py-2 uppercase font-black">Digital Club 2026</a>
-          <a href="https://t.me/gevget" target="_blank" rel="noopener noreferrer" className="text-[10px] font-mono text-zinc-700 hover:text-[#FF007F] transition-colors border border-zinc-900 px-4 py-2 uppercase font-black">Contact Organizers</a>
+        <div className="flex flex-wrap justify-center gap-8">
+          <a href="https://t.me/gevget" target="_blank" rel="noopener noreferrer" className="text-[10px] font-mono text-zinc-700 hover:text-[#00FF41] transition-colors border border-zinc-900 px-4 py-2 font-black">Telegram: @gevget</a>
+        </div>
+        <div className="text-[11px] font-mono text-zinc-600">
+          Сделано с{" "}
+          <a
+            href="https://tolk-usite.com/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-zinc-300 hover:text-[#00FF41] transition-colors"
+          >
+            Толком
+          </a>
         </div>
       </footer>
 

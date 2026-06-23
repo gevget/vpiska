@@ -32,12 +32,12 @@ const BenefitsBlock = () => {
   const eyebrow = useEditorOverrides("benefits-eyebrow", { text: "VALUE PROPOSITION // 05" });
   const title = useEditorOverrides("benefits-title", { text: "ПОЧЕМУ ПАРТНЁРАМ ВЫГОДНО БЫТЬ С НАМИ" });
   const description = useEditorOverrides("benefits-description", {
-    text: "Digital Вписка — это не просто ивент, это инструмент формирования социального капитала в высших эшелонах digital-индустрии.",
+    text: "Digital Вписка даёт партнёру не фоновое присутствие, а живое внимание внутри общего опыта вечера.",
   });
   const audienceCard = useEditorOverrides("benefits-audience-card");
-  const audienceLabel = useEditorOverrides("benefits-audience-label", { text: "ЛПР ОФФЛАЙН" });
+  const audienceLabel = useEditorOverrides("benefits-audience-label", { text: "ЗАКРЫТЫЙ B2B-ФОРМАТ" });
   const communityCard = useEditorOverrides("benefits-community-card");
-  const communityLabel = useEditorOverrides("benefits-community-label", { text: "DIGITAL COMMUNITY" });
+  const communityLabel = useEditorOverrides("benefits-community-label", { text: "ОРГАНИЧНАЯ ИНТЕГРАЦИЯ" });
 
   return (
     <section
@@ -62,13 +62,13 @@ const BenefitsBlock = () => {
 
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-8">
             <div {...audienceCard.bind} style={audienceCard.style} className="p-8 bg-zinc-950 border border-zinc-900 space-y-4">
-              <div className="text-3xl font-mono font-black text-white">450+</div>
+              <div className="text-2xl font-display font-black text-white uppercase">Private</div>
               <div {...audienceLabel.bind} style={audienceLabel.style} className="text-[10px] font-mono text-zinc-500 uppercase tracking-widest font-bold">
                 {audienceLabel.text}
               </div>
             </div>
             <div {...communityCard.bind} style={communityCard.style} className="p-8 bg-zinc-950 border border-zinc-900 space-y-4">
-              <div className="text-3xl font-mono font-black text-white">7 700+</div>
+              <div className="text-2xl font-display font-black text-white uppercase">Native</div>
               <div {...communityLabel.bind} style={communityLabel.style} className="text-[10px] font-mono text-zinc-500 uppercase tracking-widest font-bold">
                 {communityLabel.text}
               </div>

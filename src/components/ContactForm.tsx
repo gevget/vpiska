@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Send, CheckCircle2, User, Mail, MessageSquare, Phone } from "lucide-react";
+import { Send, CheckCircle2, User, Mail, MessageSquare, MessageCircle } from "lucide-react";
 import { useEditorOverrides } from "../editor/useEditorOverrides";
 
 const ContactForm = () => {
@@ -8,7 +8,6 @@ const ContactForm = () => {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitted(true);
-    // Mimic API delay
     setTimeout(() => setIsSubmitted(false), 5000);
   };
 
@@ -16,7 +15,7 @@ const ContactForm = () => {
   const eyebrow = useEditorOverrides("contact-eyebrow", { text: "// СТАТЬ ЧАСТЬЮ СОБЫТИЯ" });
   const title = useEditorOverrides("contact-title", { text: "ОСТАВЬТЕ ЗАЯВКУ" });
   const description = useEditorOverrides("contact-description", {
-    text: "Обсудим формат вашего участия, подберем индивидуальный пакет интеграций или ответим на любые вопросы по мероприятию.",
+    text: "Обсудим формат вашего участия, подберём индивидуальный пакет интеграций или ответим на любые вопросы по мероприятию.",
   });
   const formCard = useEditorOverrides("contact-form-card");
   const submitButton = useEditorOverrides("contact-submit-button", { text: "Отправить запрос" });
@@ -29,7 +28,6 @@ const ContactForm = () => {
       className="w-full py-24 sm:py-32 xl:py-40 px-6 sm:px-12 lg:px-20 xl:px-32 bg-black relative border-t border-zinc-900"
     >
       <div className="w-full max-w-[2000px] mx-auto grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
-        {/* Left Side: Info */}
         <div className="space-y-12">
           <div className="space-y-6">
             <span {...eyebrow.bind} style={eyebrow.style} className="text-[10px] sm:text-xs font-mono text-zinc-600 uppercase tracking-[0.4em] font-black block">
@@ -48,21 +46,21 @@ const ContactForm = () => {
             <div className="space-y-4">
               <div className="flex items-center gap-4 group">
                 <div className="w-10 h-10 border border-zinc-800 flex items-center justify-center group-hover:border-[#00FF41] transition-colors">
-                  <Phone className="w-4 h-4 text-zinc-500 group-hover:text-[#00FF41]" />
+                  <MessageCircle className="w-4 h-4 text-zinc-500 group-hover:text-[#00FF41]" />
                 </div>
-                <span className="text-sm font-mono text-zinc-300">+7 (995) 505-13-13</span>
-              </div>
-              <div className="flex items-center gap-4 group">
-                <div className="w-10 h-10 border border-zinc-800 flex items-center justify-center group-hover:border-[#00FF41] transition-colors">
-                  <Mail className="w-4 h-4 text-zinc-500 group-hover:text-[#00FF41]" />
-                </div>
-                <span className="text-sm font-mono text-zinc-300">partner@digital-club.ru</span>
+                <a
+                  href="https://t.me/gevget"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-sm font-mono text-zinc-300 hover:text-white transition-colors"
+                >
+                  @gevget
+                </a>
               </div>
             </div>
           </div>
         </div>
 
-        {/* Right Side: Form */}
         <div className="relative">
           {isSubmitted ? (
             <div className="p-12 border border-[#00FF41] bg-[#00FF41]/5 flex flex-col items-center justify-center text-center space-y-6 aspect-square max-w-md mx-auto">
@@ -95,7 +93,7 @@ const ContactForm = () => {
                 <div className="space-y-2">
                   <label className="text-[10px] font-mono text-zinc-600 uppercase tracking-widest block pl-1">Телефон</label>
                   <div className="relative">
-                    <Phone className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-zinc-700" />
+                    <MessageCircle className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-zinc-700" />
                     <input
                       required
                       type="tel"
