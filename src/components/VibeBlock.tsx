@@ -1,13 +1,15 @@
 import React, { useRef } from "react";
 
+import { withBase } from "../lib/asset";
+
 const VIBE_EVENT_PHOTOS = [
-  { src: "/event-33.jpg", alt: "Финал номера с букетами и артистами на сцене" },
-  { src: "/event-22.jpg", alt: "Дуэт на сцене с живой группой и залом" },
-  { src: "/event-1212.jpg", alt: "Музыканты и гость на сцене в синем свете" },
-  { src: "/vp-4.jpg", alt: "Гость снимает выступление на телефон" },
-  { src: "/vp-6.jpg", alt: "Эмоциональный момент на сцене" },
-  { src: "/vp-7.jpg", alt: "Концертный кадр с залом и артистами" },
-  { src: "/vp-1.jpg", alt: "Энергия толпы на выступлении" },
+  { src: withBase("/event-33.jpg"), alt: "Финал номера с букетами и артистами на сцене" },
+  { src: withBase("/event-22.jpg"), alt: "Дуэт на сцене с живой группой и залом" },
+  { src: withBase("/event-1212.jpg"), alt: "Музыканты и гость на сцене в синем свете" },
+  { src: withBase("/vp-4.jpg"), alt: "Гость снимает выступление на телефон" },
+  { src: withBase("/vp-6.jpg"), alt: "Эмоциональный момент на сцене" },
+  { src: withBase("/vp-7.jpg"), alt: "Концертный кадр с залом и артистами" },
+  { src: withBase("/vp-1.jpg"), alt: "Энергия толпы на выступлении" },
 ];
 
 const VibeBlock = () => {

@@ -4,6 +4,7 @@ import { motion } from "motion/react";
 import { HERO_EVENT_PHOTO } from "./data";
 import StructuredData from "./components/StructuredData";
 import { useEditorOverrides } from "./editor/useEditorOverrides";
+import { withBase } from "./lib/asset";
 
 const EcosystemDashboard = lazy(() => import("./components/EcosystemDashboard"));
 const AtmosphereGallery = lazy(() => import("./components/AtmosphereGallery"));
@@ -28,11 +29,11 @@ const SectionFallback = () => (
 );
 
 const TOP_EVENT_PHOTOS = [
-  { src: "/event-11.jpg", alt: "Гости и музыканты в центре зала" },
-  { src: "/event-12.jpg", alt: "Выступление на сцене перед залом" },
-  { src: "/event-311.jpg", alt: "Широкий кадр концерта и аудитории" },
-  { src: "/vp-2.jpg", alt: "Саксофон и толпа вокруг артистов" },
-  { src: "/vp-3.jpg", alt: "Участники проекта на сцене" },
+  { src: withBase("/event-11.jpg"), alt: "Гости и музыканты в центре зала" },
+  { src: withBase("/event-12.jpg"), alt: "Выступление на сцене перед залом" },
+  { src: withBase("/event-311.jpg"), alt: "Широкий кадр концерта и аудитории" },
+  { src: withBase("/vp-2.jpg"), alt: "Саксофон и толпа вокруг артистов" },
+  { src: withBase("/vp-3.jpg"), alt: "Участники проекта на сцене" },
 ];
 
 export default function App() {
