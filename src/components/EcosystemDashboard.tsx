@@ -1,4 +1,4 @@
-import React from "react";
+﻿import React from "react";
 import { motion } from "motion/react";
 import { ECOSYSTEM_STATISTICS } from "../data";
 import { Megaphone, Radio, Send, Clapperboard, Star, Layers3 } from "lucide-react";
@@ -10,7 +10,7 @@ const MEDIA_ITEMS = [
     value: ECOSYSTEM_STATISTICS.totalSubscriptions,
     note: "совокупный медийный охват экосистемы",
     icon: Megaphone,
-    accent: "text-[#00FF41]",
+    accent: "text-[#BEEB08]",
   },
   {
     title: "Сообщества",
@@ -38,7 +38,7 @@ const MEDIA_ITEMS = [
     value: "24/7",
     note: "площадка, через которую бренд живет дольше вечера",
     icon: Star,
-    accent: "text-[#00FF41]",
+    accent: "text-[#BEEB08]",
   },
   {
     title: "Медийные возможности",
@@ -78,7 +78,7 @@ function MediaCard({
       transition={{ delay: index * 0.05 }}
       {...card.bind}
       style={card.style}
-      className="group border border-zinc-900 bg-black p-7 transition-colors duration-300 hover:border-[#00FF41]/30"
+      className="group border border-zinc-900 bg-black p-7 transition-colors duration-300 hover:border-[#BEEB08]/30"
     >
       <div className="mb-10 flex items-start justify-between gap-4">
         <span {...cardTitle.bind} style={cardTitle.style} className="font-mono text-[10px] font-black uppercase tracking-[0.35em] text-zinc-600">
@@ -101,7 +101,7 @@ const EcosystemDashboard = () => {
   const eyebrow = useEditorOverrides("ecosystem-eyebrow", { text: "MEDIA ENGINE // DIGITAL CLUB" });
   const title = useEditorOverrides("ecosystem-title", { text: "МЕДИЙНЫЕ\nВОЗМОЖНОСТИ" });
   const description = useEditorOverrides("ecosystem-description", {
-    text: "Один блок вместо двух: здесь собраны все ключевые ресурсы продвижения, которые партнер получает через экосистему Digital Club.",
+    text: "Один блок вместо двух: здесь собраны все ключевые ресурсы продвижения, которые партнёр получает через экосистему Digital Club.",
   });
 
   return (
@@ -113,7 +113,7 @@ const EcosystemDashboard = () => {
     >
       <div className="mx-auto w-full max-w-[2000px]">
         <div className="mb-14 flex max-w-4xl flex-col gap-6">
-          <span {...eyebrow.bind} style={eyebrow.style} className="inline-block w-fit border border-[#00FF41]/20 bg-[#00FF41]/10 px-4 py-2 font-mono text-[10px] font-black uppercase tracking-[0.4em] text-[#00FF41]">
+          <span {...eyebrow.bind} style={eyebrow.style} className="inline-block w-fit border border-[#BEEB08]/20 bg-[#BEEB08]/10 px-4 py-2 font-mono text-[10px] font-black uppercase tracking-[0.4em] text-[#BEEB08]">
             {eyebrow.text}
           </span>
           <h2 {...title.bind} style={title.style} className="whitespace-pre-line text-4xl font-display font-black uppercase leading-none tracking-tighter text-white sm:text-6xl lg:text-7xl">
@@ -135,3 +135,4 @@ const EcosystemDashboard = () => {
 };
 
 export default EcosystemDashboard;
+

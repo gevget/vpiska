@@ -1,4 +1,4 @@
-import React from "react";
+﻿import React from "react";
 import { AnimatePresence, motion } from "motion/react";
 import { ExternalLink, X } from "lucide-react";
 
@@ -45,7 +45,7 @@ function GalleryCard({
       />
       <div className="absolute inset-0 bg-gradient-to-t from-black via-black/20 to-transparent opacity-60 transition-opacity group-hover:opacity-90" />
       <div className="absolute bottom-0 left-0 right-0 translate-y-4 p-6 transition-transform duration-500 group-hover:translate-y-0 sm:p-8">
-        <span className="mb-2 block text-[10px] font-mono uppercase tracking-widest text-[#00FF41]">{photo.category}</span>
+        <span className="mb-2 block text-[10px] font-mono uppercase tracking-widest text-[#BEEB08]">{photo.category}</span>
         <h3
           {...cardTitle.bind}
           style={cardTitle.style}
@@ -53,7 +53,7 @@ function GalleryCard({
         >
           {cardTitle.text}
         </h3>
-        <div className="mb-4 h-px w-0 bg-[#00FF41] opacity-50 transition-all duration-500 group-hover:w-full" />
+        <div className="mb-4 h-px w-0 bg-[#BEEB08] opacity-50 transition-all duration-500 group-hover:w-full" />
         <p
           {...cardDesc.bind}
           style={cardDesc.style}
@@ -63,7 +63,7 @@ function GalleryCard({
         </p>
       </div>
       <div className="absolute right-4 top-4 flex h-10 w-10 items-center justify-center border border-zinc-600 bg-black/80 opacity-0 transition-opacity group-hover:opacity-100">
-        <ExternalLink className="h-4 w-4 text-[#00FF41]" />
+        <ExternalLink className="h-4 w-4 text-[#BEEB08]" />
       </div>
     </motion.div>
   );
@@ -128,7 +128,7 @@ const AtmosphereGallery = ({
                 onClick={() => setActiveGalleryFilter(filter)}
                 className={`px-4 py-2 text-[10px] font-mono uppercase tracking-widest transition-all sm:px-6 sm:py-3 sm:text-xs ${
                   normalizedFilter === filter
-                    ? "bg-[#00FF41] font-black text-black"
+                    ? "bg-[#BEEB08] font-black text-black"
                     : "bg-zinc-900 text-zinc-400 hover:text-white"
                 }`}
                 aria-label={`Фильтр галереи: ${filter}`}
@@ -171,11 +171,11 @@ const AtmosphereGallery = ({
               </div>
 
               <div className="space-y-6 lg:col-span-4">
-                <span className="text-xs font-mono uppercase tracking-[0.4em] text-[#00FF41]">{lightboxPhoto.category}</span>
+                <span className="text-xs font-mono uppercase tracking-[0.4em] text-[#BEEB08]">{lightboxPhoto.category}</span>
                 <h3 className="font-display text-3xl font-black uppercase leading-none text-white sm:text-5xl">
                   {lightboxPhoto.title}
                 </h3>
-                <div className="h-1 w-20 bg-gradient-to-r from-[#00FF41] to-[#FF007F]" />
+                <div className="h-1 w-20 bg-gradient-to-r from-[#BEEB08] to-[#FF007F]" />
                 <p className="text-lg leading-relaxed text-zinc-300">{lightboxPhoto.desc}</p>
                 <div className="border-l-2 border-[#FF007F] bg-zinc-900/50 p-6">
                   <span className="mb-2 block text-xs font-mono uppercase text-zinc-500">Metrics // Эффект:</span>
@@ -191,3 +191,4 @@ const AtmosphereGallery = ({
 };
 
 export default AtmosphereGallery;
+

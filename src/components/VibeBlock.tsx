@@ -1,6 +1,14 @@
 import React, { useRef } from "react";
 
-import { VIBE_EVENT_PHOTOS } from "../data";
+const VIBE_EVENT_PHOTOS = [
+  { src: "/event-33.jpg", alt: "Финал номера с букетами и артистами на сцене" },
+  { src: "/event-22.jpg", alt: "Дуэт на сцене с живой группой и залом" },
+  { src: "/event-1212.jpg", alt: "Музыканты и гость на сцене в синем свете" },
+  { src: "/vp-4.jpg", alt: "Гость снимает выступление на телефон" },
+  { src: "/vp-6.jpg", alt: "Эмоциональный момент на сцене" },
+  { src: "/vp-7.jpg", alt: "Концертный кадр с залом и артистами" },
+  { src: "/vp-1.jpg", alt: "Энергия толпы на выступлении" },
+];
 
 const VibeBlock = () => {
   const scrollerRef = useRef<HTMLDivElement | null>(null);
@@ -27,18 +35,15 @@ const VibeBlock = () => {
   const handlePointerMove = (event: React.PointerEvent<HTMLDivElement>) => {
     const node = scrollerRef.current;
     const dragState = dragStateRef.current;
-
     if (!node || !dragState.isDown) return;
 
     const delta = event.clientX - dragState.startX;
-    node.scrollLeft = dragState.scrollLeft - delta;
+    node.scrollLeft = dragState.scrollLeft - delta * 1.1;
   };
 
   const handlePointerUp = (event: React.PointerEvent<HTMLDivElement>) => {
     const node = scrollerRef.current;
-    const dragState = dragStateRef.current;
-
-    if (!node || !dragState.isDown) return;
+    if (!node || !dragStateRef.current.isDown) return;
 
     dragStateRef.current.isDown = false;
     node.releasePointerCapture(event.pointerId);
@@ -58,7 +63,7 @@ const VibeBlock = () => {
         {VIBE_EVENT_PHOTOS.map((photo, index) => (
           <div
             key={`${photo.src}-${index}`}
-            className="group relative aspect-[4/3] w-[360px] flex-shrink-0 overflow-hidden border border-zinc-700 transition-all duration-700 sm:w-[520px] lg:w-[760px]"
+            className="group relative aspect-[4/3] w-[400px] flex-shrink-0 overflow-hidden border border-zinc-700 transition-all duration-700 sm:w-[580px] lg:w-[840px]"
           >
             <img
               src={photo.src}

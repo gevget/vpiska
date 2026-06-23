@@ -90,7 +90,7 @@ const Header = () => {
                 href="https://t.me/gevget"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-[11px] font-mono font-black text-[#00FF41] transition-colors hover:text-white"
+                className="text-[11px] font-mono font-black text-[#BEEB08] transition-colors hover:text-white"
               >
                 @gevget
               </a>
@@ -101,7 +101,7 @@ const Header = () => {
                 key={link.name}
                 onClick={() => scrollToSection(link.href)}
                 className={`text-[11px] font-mono font-black uppercase tracking-[0.2em] transition-colors ${
-                  activeSection === link.href ? "text-[#00FF41] neon-glow-green" : "text-zinc-400 hover:text-[#00FF41]"
+                  activeSection === link.href ? "text-[#BEEB08] neon-glow-green" : "text-zinc-400 hover:text-[#BEEB08]"
                 }`}
               >
                 {link.name}
@@ -110,7 +110,7 @@ const Header = () => {
 
             <button
               onClick={() => scrollToSection("#contact-form")}
-              className="group flex items-center gap-2 bg-white px-6 py-2 text-[11px] font-mono font-black uppercase tracking-widest text-black transition-all hover:bg-[#00FF41]"
+              className="group flex items-center gap-2 bg-white px-6 py-2 text-[11px] font-mono font-black uppercase tracking-widest text-black transition-all hover:bg-[#BEEB08]"
             >
               Участвовать <ArrowRight className="h-3 w-3 transition-transform group-hover:translate-x-1" />
             </button>
@@ -153,7 +153,7 @@ const Header = () => {
                   transition={{ delay: 0.1 + idx * 0.05 }}
                   onClick={() => scrollToSection(link.href)}
                   className={`block text-left text-4xl font-display font-black uppercase tracking-tighter transition-colors sm:text-5xl ${
-                    activeSection === link.href ? "text-[#00FF41]" : "text-zinc-700 hover:text-[#00FF41]"
+                    activeSection === link.href ? "text-[#BEEB08]" : "text-zinc-700 hover:text-[#BEEB08]"
                   }`}
                 >
                   {link.name}
@@ -164,7 +164,7 @@ const Header = () => {
             <div className="mt-auto flex flex-col gap-8 border-t border-zinc-800 pt-10">
               <button
                 onClick={() => scrollToSection("#contact-form")}
-                className="flex w-full items-center justify-center gap-3 bg-[#00FF41] py-5 text-xs font-mono font-black uppercase tracking-[0.2em] text-black transition-all hover:bg-white"
+                className="flex w-full items-center justify-center gap-3 bg-[#BEEB08] py-5 text-xs font-mono font-black uppercase tracking-[0.2em] text-black transition-all hover:bg-white"
               >
                 Стать партнёром <ArrowRight className="h-4 w-4" />
               </button>
