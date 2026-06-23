@@ -46,7 +46,7 @@ const LeadModal = ({ isOpen, onClose, context }: LeadModalProps) => {
           >
             <button
               onClick={onClose}
-              className="absolute top-6 right-6 z-10 rounded-full p-2 text-zinc-500 transition-colors hover:bg-white/5 hover:text-white"
+              className="absolute right-6 top-6 z-10 rounded-full p-2 text-zinc-500 transition-colors hover:bg-white/5 hover:text-white"
               aria-label="Закрыть окно"
             >
               <X size={24} />
@@ -54,12 +54,12 @@ const LeadModal = ({ isOpen, onClose, context }: LeadModalProps) => {
 
             <div className="space-y-10 p-8 sm:p-12">
               <div className="space-y-3">
-                <span className="block text-[10px] font-mono font-black uppercase tracking-[0.5em] text-[#FF007F]">B2B REGISTER // 2026</span>
+                <span className="block text-[10px] font-mono font-black uppercase tracking-[0.5em] text-[#FF007F]">29 ОКТЯБРЯ // ПАРТНЁРСКИЙ ЗАПРОС</span>
                 <h3 id="modal-title" className="font-display text-3xl font-black uppercase leading-none tracking-tight text-white">
-                  РЕГИСТРАЦИЯ ПАРТНЁРА
+                  ЗАПРОС НА УЧАСТИЕ
                 </h3>
                 <p className="text-xs leading-relaxed text-zinc-500">
-                  Оставьте запрос на получение расширенной B2B-презентации и спецификаций партнерских пакетов Digital Вписки.
+                  Оставьте заявку, и мы покажем форматы участия, варианты интеграции и детали по партнёрским слотам.
                 </p>
               </div>
 
@@ -79,9 +79,9 @@ const LeadModal = ({ isOpen, onClose, context }: LeadModalProps) => {
                     <Check className="h-8 w-8 text-[#BEEB08]" />
                   </motion.div>
                   <div className="space-y-2">
-                    <p className="text-sm font-mono font-black uppercase tracking-widest text-[#BEEB08]">РЕГИСТРАЦИЯ ЗАВЕРШЕНА</p>
+                    <p className="text-sm font-mono font-black uppercase tracking-widest text-[#BEEB08]">ЗАПРОС ОТПРАВЛЕН</p>
                     <p className="mx-auto max-w-sm text-xs leading-relaxed text-zinc-400">
-                      Мы получили ваш запрос. Презентация и материалы будут направлены в ближайшее время.
+                      Мы получили ваш запрос. Вернёмся с материалами и деталями в ближайшее время.
                     </p>
                   </div>
                 </div>

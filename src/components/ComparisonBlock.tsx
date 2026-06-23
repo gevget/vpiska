@@ -113,11 +113,11 @@ const ComparisonBlock = ({
             <span
               {...eyebrow.bind}
               style={eyebrow.style}
-              className="inline-block border border-[#BEEB08]/35 bg-[#BEEB08]/15 px-4 py-1.5 text-sm font-mono font-extrabold uppercase tracking-widest text-[#BEEB08]"
+              className="inline-block max-w-full border border-[#BEEB08]/35 bg-[#BEEB08]/15 px-3 py-1.5 text-[9px] font-mono font-extrabold uppercase tracking-[0.2em] text-[#BEEB08] sm:px-4 sm:text-sm sm:tracking-widest"
             >
               {eyebrow.text}
             </span>
-            <h2 {...title.bind} style={title.style} className="font-display text-[60px] font-black uppercase leading-none tracking-tight">
+            <h2 {...title.bind} style={title.style} className="max-w-full font-display text-3xl font-black uppercase leading-[0.92] tracking-tight text-balance sm:text-5xl lg:text-[60px]">
               {title.text}
             </h2>
             <p {...description.bind} style={description.style} className="max-w-3xl text-sm font-light leading-relaxed text-zinc-400 sm:text-lg lg:text-xl">
@@ -253,7 +253,7 @@ const ComparisonBlock = ({
           </div>
         </div>
 
-        <div className="w-full overflow-x-auto border border-zinc-900">
+        <div className="hidden w-full overflow-x-auto border border-zinc-900 md:block">
           <div className="min-w-[800px] divide-y divide-zinc-900">
             <div className="grid grid-cols-12 bg-black p-6 text-[10px] font-mono font-bold uppercase tracking-widest text-[#8E8E93] sm:text-xs">
               <div className="col-span-4">Критерий сравнения</div>

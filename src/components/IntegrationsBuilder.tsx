@@ -6,18 +6,18 @@ interface IntegrationsBuilderProps {
 }
 
 const INTEGRATION_METHODS = [
-  { title: "Брендированные браслеты на входе", desc: "Первый контакт гостя с брендом", icon: "Tag", price: "50 000 ₽" },
-  { title: "Логотип на всех экранах", desc: "Постоянное присутствие в поле зрения", icon: "Monitor", price: "100 000 ₽" },
-  { title: "Кастомная lounge-зона", desc: "Комфорт и нетворкинг в лаундже бренда", icon: "Armchair", tag: "networking", price: "250 000 ₽" },
-  { title: "Брендирование барной карты", desc: "Авторские коктейли от партнёра", icon: "Wine", price: "150 000 ₽" },
-  { title: "Интерактивная световая инсталляция", desc: "Свет и визуальный вайб вечера", icon: "Lightbulb", price: "200 000 ₽" },
-  { title: "AI-интегратор в кулуарах", desc: "Технологичное общение с брендом", icon: "Bot", tag: "networking", price: "300 000 ₽" },
-  { title: "Интеграция в сценические номера", desc: "Появление в шоу-программе", icon: "Music", tag: "speaking", price: "400 000 ₽" },
-  { title: "Backstage-репортажи", desc: "Контент с главными ЛПР вечера", icon: "Camera", tag: "speaking", price: "350 000 ₽" },
-  { title: "Брендированный мерч", desc: "Кастомные аксессуары для всех гостей", icon: "Shirt", tag: "production", price: "180 000 ₽" },
-  { title: "Digital-инсталляция", desc: "Интерактивная зона с вашим продуктом", icon: "Cpu", tag: "innovation", price: "250 000 ₽" },
-  { title: "VIP-Lounge Service", desc: "Эксклюзивный сервис в зоне для спикеров", icon: "Gem", tag: "networking", price: "300 000 ₽" },
-  { title: "Podcast Corner", desc: "Запись интервью с лидерами мнений", icon: "Mic", tag: "content", price: "150 000 ₽" },
+  { title: "Брендированные браслеты на входе", desc: "Первое касание с брендом ещё до начала программы.", icon: "Tag", price: "50 000 ₽" },
+  { title: "Логотип на экранах", desc: "Постоянное присутствие в визуальной среде вечера.", icon: "Monitor", price: "100 000 ₽" },
+  { title: "Кастомная lounge-зона", desc: "Место для спокойных встреч, разговоров и welcome-коммуникации.", icon: "Armchair", tag: "networking", price: "250 000 ₽" },
+  { title: "Брендирование барной карты", desc: "Авторские позиции и отдельный повод говорить о бренде.", icon: "Wine", price: "150 000 ₽" },
+  { title: "Световая инсталляция", desc: "Визуальный акцент, который работает на атмосферу и фото гостей.", icon: "Lightbulb", price: "200 000 ₽" },
+  { title: "AI-активация в кулуарах", desc: "Технологичный формат общения с гостями вне сцены.", icon: "Bot", tag: "networking", price: "300 000 ₽" },
+  { title: "Интеграция в сценический номер", desc: "Бренд появляется прямо внутри шоу, а не рядом с ним.", icon: "Music", tag: "speaking", price: "400 000 ₽" },
+  { title: "Backstage-репортаж", desc: "Контент со сцены, из бэкстейджа и из точек общения с гостями.", icon: "Camera", tag: "speaking", price: "350 000 ₽" },
+  { title: "Брендированный мерч", desc: "Полезные и заметные предметы, которые остаются у гостей.", icon: "Shirt", tag: "production", price: "180 000 ₽" },
+  { title: "Digital-инсталляция", desc: "Интерактивная зона с продуктом, механикой или демо.", icon: "Cpu", tag: "innovation", price: "250 000 ₽" },
+  { title: "VIP Lounge Service", desc: "Отдельный опыт для ваших гостей, клиентов и партнёров.", icon: "Gem", tag: "networking", price: "300 000 ₽" },
+  { title: "Podcast Corner", desc: "Интервью и живой контент с участниками и партнёрами вечера.", icon: "Mic", tag: "content", price: "150 000 ₽" },
 ];
 
 const iconMap: Record<string, any> = { Tag, Monitor, Armchair: Sofa, Wine, Lightbulb, Bot, Music, Camera, Shirt, Cpu, Gem, Mic };
@@ -28,14 +28,14 @@ const IntegrationsBuilder = ({ openModalWithPreset }: IntegrationsBuilderProps) 
       <div className="mx-auto w-full max-w-[2000px] space-y-24">
         <div className="max-w-5xl space-y-10">
           <div className="space-y-4">
-            <span className="block text-[10px] font-mono font-black uppercase tracking-[0.4em] text-zinc-500 sm:text-xs">// МЕТОДЫ ИНТЕГРАЦИИ БРЕНДОВ</span>
+            <span className="block text-[10px] font-mono font-black uppercase tracking-[0.4em] text-zinc-500 sm:text-xs">// МЕТОДЫ ИНТЕГРАЦИИ БРЕНДА</span>
             <h2 className="font-display text-[34px] font-black uppercase leading-[0.85] tracking-tighter text-white sm:text-[64px] lg:text-[88px]">
               МАСШТАБИРУЙ <br />
               <span className="text-[#BEEB08]">ПРИСУТСТВИЕ</span>
             </h2>
           </div>
           <p className="max-w-3xl border-l border-zinc-700 pl-8 text-base font-light leading-relaxed text-zinc-300 sm:text-xl">
-            Мы предлагаем более десяти способов органично встроить бренд в атмосферу Digital Вписки: от welcome-касания до сценического присутствия и контентного следа после события.
+            Можно встроить бренд в вечер по-разному: от простой зоны на входе до полноценной интеграции в сцену, контент и VIP-опыт.
           </p>
         </div>
 

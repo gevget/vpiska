@@ -13,13 +13,13 @@ const ContactForm = () => {
   };
 
   const section = useEditorOverrides("contact-section");
-  const eyebrow = useEditorOverrides("contact-eyebrow", { text: "// СТАТЬ ЧАСТЬЮ СОБЫТИЯ" });
-  const title = useEditorOverrides("contact-title", { text: "ОСТАВЬТЕ ЗАЯВКУ" });
+  const eyebrow = useEditorOverrides("contact-eyebrow", { text: "// ОБСУДИМ УЧАСТИЕ" });
+  const title = useEditorOverrides("contact-title", { text: "ОБСУДИМ УЧАСТИЕ" });
   const description = useEditorOverrides("contact-description", {
-    text: "Обсудим формат вашего участия, подберём индивидуальный пакет интеграций или ответим на любые вопросы по мероприятию.",
+    text: "Расскажите, какой формат вам интересен. Мы подберём интеграцию, покажем варианты и ответим на вопросы.",
   });
   const formCard = useEditorOverrides("contact-form-card");
-  const submitButton = useEditorOverrides("contact-submit-button", { text: "Отправить запрос" });
+  const submitButton = useEditorOverrides("contact-submit-button", { text: "Отправить заявку" });
 
   return (
     <section id="contact-form" {...section.bind} style={section.style} className="relative w-full border-t border-zinc-800 bg-black px-6 py-24 sm:px-12 sm:py-32 lg:px-20 xl:px-32 xl:py-40">
@@ -68,7 +68,7 @@ const ContactForm = () => {
                   <label className="block pl-1 text-[10px] font-mono font-black uppercase tracking-widest text-zinc-300">Имя</label>
                   <div className="relative">
                     <User className="absolute left-4 top-1/2 h-4 w-4 -translate-y-1/2 text-zinc-400" />
-                    <input required type="text" placeholder="Александр" className="w-full border border-zinc-600 bg-black px-12 py-4 text-sm text-white placeholder:text-zinc-500 transition-all focus:border-[#BEEB08] focus:outline-none" />
+                    <input required type="text" placeholder="Имя" className="w-full border border-zinc-600 bg-black px-12 py-4 text-sm text-white placeholder:text-zinc-500 transition-all focus:border-[#BEEB08] focus:outline-none" />
                   </div>
                 </div>
 
@@ -93,7 +93,7 @@ const ContactForm = () => {
                 <label className="block pl-1 text-[10px] font-mono font-black uppercase tracking-widest text-zinc-300">Комментарий</label>
                 <div className="relative">
                   <MessageSquare className="absolute left-4 top-5 h-4 w-4 text-zinc-400" />
-                  <textarea placeholder="Ваше сообщение..." rows={4} className="w-full resize-none border border-zinc-600 bg-black px-12 py-4 text-sm text-white placeholder:text-zinc-500 transition-all focus:border-[#BEEB08] focus:outline-none" />
+                  <textarea placeholder="Что хотите обсудить?" rows={4} className="w-full resize-none border border-zinc-600 bg-black px-12 py-4 text-sm text-white placeholder:text-zinc-500 transition-all focus:border-[#BEEB08] focus:outline-none" />
                 </div>
               </div>
 

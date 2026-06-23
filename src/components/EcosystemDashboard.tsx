@@ -1,7 +1,8 @@
-﻿import React from "react";
+import React from "react";
 import { motion } from "motion/react";
+import { Clapperboard, Layers3, Megaphone, Radio, Send, Star } from "lucide-react";
+
 import { ECOSYSTEM_STATISTICS } from "../data";
-import { Megaphone, Radio, Send, Clapperboard, Star, Layers3 } from "lucide-react";
 import { useEditorOverrides } from "../editor/useEditorOverrides";
 
 const MEDIA_ITEMS = [
@@ -36,14 +37,14 @@ const MEDIA_ITEMS = [
   {
     title: "Digital Club",
     value: "24/7",
-    note: "площадка, через которую бренд живет дольше вечера",
+    note: "площадка, через которую бренд живёт дольше вечера",
     icon: Star,
     accent: "text-[#BEEB08]",
   },
   {
     title: "Медийные возможности",
     value: "360°",
-    note: "анонсы, Telegram, интеграции, контент и партнерские касания",
+    note: "анонсы, Telegram, интеграции, контент и партнёрские касания",
     icon: Radio,
     accent: "text-[#FF007F]",
   },
@@ -101,7 +102,7 @@ const EcosystemDashboard = () => {
   const eyebrow = useEditorOverrides("ecosystem-eyebrow", { text: "MEDIA ENGINE // DIGITAL CLUB" });
   const title = useEditorOverrides("ecosystem-title", { text: "МЕДИЙНЫЕ\nВОЗМОЖНОСТИ" });
   const description = useEditorOverrides("ecosystem-description", {
-    text: "Один блок вместо двух: здесь собраны все ключевые ресурсы продвижения, которые партнёр получает через экосистему Digital Club.",
+    text: "У партнёра есть не только вечер на площадке, но и охват до и после события.",
   });
 
   return (
@@ -135,4 +136,3 @@ const EcosystemDashboard = () => {
 };
 
 export default EcosystemDashboard;
-

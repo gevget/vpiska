@@ -7,12 +7,12 @@ import { useEditorOverrides } from "../editor/useEditorOverrides";
 const ICONS = [Target, Users, Heart, Share2, Camera, Award];
 
 const PARTNER_BENEFITS = [
-  { id: 1, title: "Доступ к decision makers", desc: "Живой контакт с людьми, которые принимают решения." },
-  { id: 2, title: "Неформальная среда для продаж", desc: "Не стенд и не холодный питч, а вечер вместе." },
-  { id: 3, title: "Возможность пригласить клиентов", desc: "Событие можно использовать как формат client entertainment." },
-  { id: 4, title: "Живое присутствие бренда", desc: "Бренд находится внутри общего опыта вечера, а не остаётся набором носителей." },
-  { id: 5, title: "Эмоциональная запоминаемость", desc: "Формат вспоминают как опыт, а не как очередной спонсорский блок." },
-  { id: 6, title: "Ассоциация с новым форматом", desc: "Партнёр оказывается внутри сильного digital- и tech-события, а не рядом с ним." },
+  { id: 1, title: "Люди, которые решают", desc: "На площадке — руководители, маркетологи, продюсеры, основатели и команды." },
+  { id: 2, title: "Продажи без холода", desc: "Люди приходят отдыхать, но знакомятся и обсуждают дела естественно." },
+  { id: 3, title: "Можно пригласить клиентов", desc: "Приведите партнёров, команду или ключевых клиентов в сильный вечер." },
+  { id: 4, title: "Бренд внутри события", desc: "Не просто логотип. Можно встроиться в механику, сцену, welcome-зону или контент." },
+  { id: 5, title: "Эмоция вместо баннера", desc: "Гостей цепляют не рекламой, а атмосферой, музыкой и живым контактом." },
+  { id: 6, title: "Новый B2B-формат", desc: "Это не конференция. Это вечер, после которого бренд проще вспомнить." },
 ];
 
 function BenefitCard({ benefit, idx }: { benefit: (typeof PARTNER_BENEFITS)[number]; idx: number }) {
@@ -39,14 +39,14 @@ function BenefitCard({ benefit, idx }: { benefit: (typeof PARTNER_BENEFITS)[numb
 const BenefitsBlock = () => {
   const section = useEditorOverrides("benefits-section");
   const eyebrow = useEditorOverrides("benefits-eyebrow", { text: "VALUE PROPOSITION // 05" });
-  const title = useEditorOverrides("benefits-title", { text: "ПОЧЕМУ ПАРТНЁРАМ ВЫГОДНО БЫТЬ С НАМИ" });
+  const title = useEditorOverrides("benefits-title", { text: "ПОЧЕМУ БРЕНДАМ СЮДА" });
   const description = useEditorOverrides("benefits-description", {
-    text: "Digital Вписка даёт партнёру не фоновое присутствие, а живое внимание внутри общего опыта вечера.",
+    text: "Digital Вписка даёт партнёру не баннер на фоне сцены, а живое присутствие внутри вечера.",
   });
   const audienceCard = useEditorOverrides("benefits-audience-card");
-  const audienceLabel = useEditorOverrides("benefits-audience-label", { text: "ЗАКРЫТЫЙ B2B-ФОРМАТ" });
+  const audienceLabel = useEditorOverrides("benefits-audience-label", { text: "Закрытый вечер для digital-индустрии" });
   const communityCard = useEditorOverrides("benefits-community-card");
-  const communityLabel = useEditorOverrides("benefits-community-label", { text: "ОРГАНИЧНАЯ ИНТЕГРАЦИЯ" });
+  const communityLabel = useEditorOverrides("benefits-community-label", { text: "Бренд встроен в сценарий вечера" });
 
   return (
     <section id="benefits-block" {...section.bind} style={section.style} className="relative w-full overflow-hidden bg-black px-6 py-24 sm:px-12 sm:py-32 lg:px-20 xl:px-32 xl:py-40">

@@ -198,12 +198,12 @@ export default function App() {
   };
 
   const heroSection = useEditorOverrides("hero-section");
-  const heroBadge = useEditorOverrides("hero-badge", { text: "B2B PARTNERSHIP PORTAL // 2026" });
+  const heroBadge = useEditorOverrides("hero-badge", { text: "29 ОКТЯБРЯ // МОСКВА" });
   const heroSubtitle = useEditorOverrides("hero-subtitle", {
-    text: "by Digital Club // Главное музыкальное B2B-событие года — Digital Вписка. Осень 2026.",
+    text: "B2B-вечер, где digital-индустрия выходит на сцену. Концерт, нетворкинг и партнёрские интеграции в одном событии.",
   });
-  const heroCta = useEditorOverrides("hero-cta", { text: "Стать партнёром →" });
-  const heroStatus = useEditorOverrides("hero-status", { text: "1 слот генерала доступен" });
+  const heroCta = useEditorOverrides("hero-cta", { text: "Стать партнёром" });
+  const heroStatus = useEditorOverrides("hero-status", { text: "Обсудить слот" });
 
   return (
     <div className="relative min-h-screen overflow-x-hidden bg-[#050505] font-sans text-white selection:bg-[#FF007F] selection:text-[#050505] noise-overlay scroll-smooth">
@@ -218,8 +218,8 @@ export default function App() {
           className="relative flex min-h-[85vh] w-full items-center overflow-hidden border-b border-zinc-800"
         >
           <div className="absolute inset-0 z-0">
-            <img src={HERO_EVENT_PHOTO} alt="Digital Вписка Atmosphere" className="h-full w-full scale-105 object-cover opacity-40" />
-            <div className="absolute inset-0 bg-gradient-to-t from-[#050505] via-black/25 to-[#050505]" />
+            <img src={HERO_EVENT_PHOTO} alt="Digital Вписка Atmosphere" className="h-full w-full scale-105 object-cover opacity-55 sm:opacity-40" />
+            <div className="absolute inset-0 bg-gradient-to-t from-[#050505] via-black/15 to-[#050505] sm:via-black/25" />
           </div>
 
           <div className="relative z-10 mx-auto w-full max-w-[2000px] px-6 py-20 sm:px-12 lg:px-24">
@@ -228,18 +228,18 @@ export default function App() {
                 <span
                   {...heroBadge.bind}
                   style={heroBadge.style}
-                  className="inline-block border border-[#BEEB08]/25 bg-[#BEEB08]/5 px-3 py-1.5 text-[10px] font-mono uppercase tracking-[0.5em] text-[#BEEB08]"
+                  className="inline-block max-w-full border border-[#BEEB08]/25 bg-[#BEEB08]/5 px-3 py-1.5 text-[9px] font-mono uppercase tracking-[0.28em] text-[#BEEB08] sm:text-[10px] sm:tracking-[0.5em]"
                 >
                   {heroBadge.text}
                 </span>
-                <h1 className="font-display text-5xl font-black uppercase leading-[0.85] tracking-tighter text-white sm:text-7xl lg:text-8xl">
+                <h1 className="font-display text-4xl font-black uppercase leading-[0.88] tracking-tighter text-white sm:text-7xl lg:text-8xl">
                   DIGITAL <br />
                   <span className="bg-gradient-to-r from-[#FF007F] to-[#BEEB08] bg-clip-text text-transparent neon-glow-pink">ВПИСКА</span>
                 </h1>
                 <p
                   {...heroSubtitle.bind}
                   style={heroSubtitle.style}
-                  className="max-w-2xl text-lg font-mono uppercase leading-relaxed tracking-[0.2em] text-zinc-200 sm:text-xl"
+                  className="max-w-2xl text-base font-mono uppercase leading-relaxed tracking-[0.12em] text-zinc-200 sm:text-xl sm:tracking-[0.2em]"
                 >
                   {heroSubtitle.text}
                 </p>
@@ -260,7 +260,7 @@ export default function App() {
                     <span className="h-1.5 w-1.5 rounded-full bg-[#BEEB08] animate-ping" />
                   </div>
                   <div>
-                    <span className="block text-[10px] font-black uppercase tracking-widest text-zinc-500">STATUS:</span>
+                    <span className="block text-[10px] font-black uppercase tracking-widest text-zinc-500">АКТУАЛЬНО:</span>
                     <span
                       {...heroStatus.bind}
                       style={heroStatus.style}
@@ -295,7 +295,7 @@ export default function App() {
               {[...TOP_EVENT_PHOTOS, ...TOP_EVENT_PHOTOS, ...TOP_EVENT_PHOTOS].map((photo, index) => (
                 <div
                   key={index}
-                  className="aspect-[4/3] w-[400px] flex-shrink-0 overflow-hidden border border-zinc-700 grayscale opacity-40 transition-all duration-700 hover:grayscale-0 hover:opacity-100 sm:w-[580px] lg:w-[840px]"
+                  className="aspect-[4/3] w-[82vw] max-w-[400px] flex-shrink-0 overflow-hidden border border-zinc-700 grayscale opacity-55 transition-all duration-700 hover:grayscale-0 hover:opacity-100 sm:w-[580px] lg:w-[840px]"
                 >
                   <img src={photo.src} alt={photo.alt} loading="lazy" className="h-full w-full object-cover" />
                 </div>
@@ -333,7 +333,7 @@ export default function App() {
       <footer className="space-y-10 border-t border-zinc-800 bg-black px-6 py-20 text-center sm:px-12">
         <div className="mx-auto max-w-2xl space-y-6">
           <p className="text-sm font-mono uppercase tracking-widest text-zinc-500">
-            B2B-координация проекта: Вадим Акимов, Александр Кубанеишвили, Евгений Толченков.
+            Проект делают: Вадим Акимов, Александр Кубанеишвили и Евгений Толченков.
           </p>
         </div>
 

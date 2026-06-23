@@ -6,18 +6,18 @@ import { withBase } from "../lib/asset";
 const TEAM_MEMBERS = [
   {
     name: "Александр Кубанеишвили",
-    role: "Соорганизатор и стратег партнёрского направления",
-    bio: "Курирует партнёрское направление проекта и отвечает за стратегию взаимодействия с брендами.",
+    role: "соорганизатор // Digital Club",
+    bio: "Отвечает за партнёрскую программу, связи с digital-комьюнити и стратегию события.",
   },
   {
     name: "Вадим Акимов",
-    role: "Главный организатор Digital Вписки",
-    bio: "Соавтор музыкальной концепции вечера и один из ключевых продюсеров сценического формата проекта.",
+    role: "музыкальный директор // Digital Stage",
+    bio: "Собирает музыкальную программу, артистов и сценическую часть вечера.",
   },
   {
     name: "Евгений Толченков",
-    role: "Основатель TOLK и соорганизатор цифрового опыта проекта",
-    bio: "Отвечает за визуальную систему, цифровой опыт проекта и развитие сложных B2B-продуктов.",
+    role: "концепт, сайт, дизайн и партнёрская упаковка",
+    bio: "Отвечает за визуальную систему, оффер и партнёрскую механику события.",
   },
 ];
 
@@ -39,7 +39,7 @@ function TeamCard({ member, index }: { key?: React.Key; member: (typeof TEAM_MEM
       <div className="relative mb-8 aspect-square w-full overflow-hidden border border-zinc-800 bg-black">
         <img src={TEAM_IMAGES[index]} alt={member.name} loading="lazy" className="h-full w-full object-cover grayscale contrast-110 transition-all duration-700 group-hover:scale-105 group-hover:grayscale-0" />
         <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
-        <div className="absolute top-4 left-4 border border-white/15 bg-black/70 px-3 py-2 text-[10px] font-mono font-black uppercase tracking-[0.35em] text-[#BEEB08] backdrop-blur-sm">
+        <div className="absolute left-4 top-4 border border-white/15 bg-black/70 px-3 py-2 text-[10px] font-mono font-black uppercase tracking-[0.35em] text-[#BEEB08] backdrop-blur-sm">
           {TEAM_CODES[index]}
         </div>
       </div>
@@ -65,6 +65,9 @@ const TeamBlock = () => {
   const section = useEditorOverrides("team-section");
   const eyebrow = useEditorOverrides("team-eyebrow", { text: "ОРГАНИЗАТОРЫ DIGITAL ВПИСКИ" });
   const title = useEditorOverrides("team-title", { text: "КОМАНДА ПРОЕКТА" });
+  const description = useEditorOverrides("team-description", {
+    text: "Команда, которая отвечает за вечер, партнёрства, сцену и атмосферу.",
+  });
 
   return (
     <section className="w-full border-t border-zinc-900 bg-zinc-950 px-6 py-24 sm:px-12 lg:px-24" id="team" {...section.bind} style={section.style}>
@@ -76,6 +79,9 @@ const TeamBlock = () => {
           <h2 {...title.bind} style={title.style} className="font-display text-3xl font-black uppercase tracking-tighter text-white sm:text-5xl">
             {title.text}
           </h2>
+          <p {...description.bind} style={description.style} className="max-w-2xl text-base leading-relaxed text-zinc-400">
+            {description.text}
+          </p>
         </div>
 
         <div className="grid grid-cols-1 gap-8 md:grid-cols-3">

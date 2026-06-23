@@ -29,7 +29,7 @@ const UseCases = () => {
           {USE_CASES.map((uc, idx) => (
             <div
               key={uc.title}
-              className="group flex min-w-[280px] flex-col border border-zinc-900 bg-black p-8 transition-all hover:border-[#BEEB08]/30 sm:min-w-[320px] md:min-w-0"
+              className="group flex min-w-[82vw] max-w-[320px] flex-col border border-zinc-900 bg-black p-8 transition-all hover:border-[#BEEB08]/30 sm:min-w-[320px] md:min-w-0 md:max-w-none"
             >
               <div className="mb-8 border-b border-zinc-900 pb-4 text-[10px] font-mono text-zinc-700 transition-colors group-hover:text-[#BEEB08]">
                 SCENARIO // 0{idx + 1}

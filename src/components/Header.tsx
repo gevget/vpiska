@@ -5,9 +5,10 @@ import { AnimatePresence, motion } from "motion/react";
 import { withBase } from "../lib/asset";
 
 const NAV_LINKS = [
-  { name: "Преимущества", href: "#benefits-block" },
-  { name: "Люди индустрии", href: "#industry-rockstars" },
-  { name: "Медийные возможности", href: "#ecosystem" },
+  { name: "Проект", href: "#hero" },
+  { name: "Почему мы", href: "#benefits-block" },
+  { name: "Формат", href: "#industry-rockstars" },
+  { name: "Медиа", href: "#ecosystem" },
   { name: "Галерея", href: "#gallery" },
   { name: "Интеграции", href: "#integrations-block" },
   { name: "Команда", href: "#team" },
@@ -16,7 +17,7 @@ const NAV_LINKS = [
 const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
-  const [activeSection, setActiveSection] = useState("#benefits-block");
+  const [activeSection, setActiveSection] = useState("#hero");
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 50);
@@ -112,7 +113,7 @@ const Header = () => {
               onClick={() => scrollToSection("#contact-form")}
               className="group flex items-center gap-2 bg-white px-6 py-2 text-[11px] font-mono font-black uppercase tracking-widest text-black transition-all hover:bg-[#BEEB08]"
             >
-              Участвовать <ArrowRight className="h-3 w-3 transition-transform group-hover:translate-x-1" />
+              Стать партнёром <ArrowRight className="h-3 w-3 transition-transform group-hover:translate-x-1" />
             </button>
           </div>
 

@@ -4,9 +4,8 @@ const StructuredData = () => {
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "Event",
-    name: "Digital Вписка — закрытый B2B-портал для партнёров",
-    description:
-      "Закрытая интерактивная страница партнёрских возможностей для главного digital & tech afterparty года.",
+    name: "Digital Вписка — B2B-вечер для партнёров",
+    description: "B2B-вечер, где digital-индустрия выходит на сцену. Концерт, нетворкинг и партнёрские интеграции в одном событии.",
     startDate: "2026-10-29T19:00:00+03:00",
     endDate: "2026-10-30T04:00:00+03:00",
     eventAttendanceMode: "https://schema.org/OfflineEventAttendanceMode",

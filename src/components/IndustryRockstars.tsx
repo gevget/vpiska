@@ -15,15 +15,14 @@ const LINEUP_ROLES = [
 
 const STATS = [
   { value: "20", label: "ПЕСЕН" },
-  { value: "20", label: "ГОСТЕЙ ИЗ ИНДУСТРИИ" },
+  { value: "20", label: "ГОСТЕЙ НА СЦЕНЕ" },
   { value: "1", label: "ЖИВАЯ ГРУППА" },
-  { value: "1", label: "СЦЕНА" },
+  { value: "1", label: "ВЕЧЕР" },
 ];
 
 const PARAGRAPHS = [
   "Digital Вписка — концерт-шоу, где на сцену выходят люди из digital-индустрии.",
-  "Маркетологи, предприниматели, дизайнеры, руководители и основатели компаний.",
-  "Каждую песню исполняет представитель рынка вместе с группой.",
+  "Маркетологи, предприниматели, дизайнеры, руководители и основатели компаний поют вместе с живой группой.",
   "Они не читают доклады.",
   "Они поют.",
 ];
@@ -35,7 +34,7 @@ function RockstarsParagraph({ text, index }: { key?: React.Key; text: string; in
     <p
       {...paragraphOverride.bind}
       style={paragraphOverride.style}
-      className={index >= 3 ? "text-2xl font-black uppercase tracking-[0.14em] text-white sm:text-3xl" : "text-base leading-relaxed text-zinc-300 sm:text-lg"}
+      className={index >= 2 ? "text-2xl font-black uppercase tracking-[0.14em] text-white sm:text-3xl" : "text-base leading-relaxed text-zinc-300 sm:text-lg"}
     >
       {paragraphOverride.text}
     </p>

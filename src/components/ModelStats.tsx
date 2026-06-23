@@ -7,10 +7,10 @@ interface ModelStatsProps {
 }
 
 const KPI_ITEMS = [
-  { value: "450+", label: "ГОСТЕЙ НА ПРЕДЫДУЩЕЙ ВПИСКЕ" },
-  { value: "1", label: "ГЕНЕРАЛЬНЫЙ ПАРТНЁР" },
+  { value: "450+", label: "ГОСТЕЙ НА ПЛОЩАДКЕ" },
+  { value: "1", label: "МУЗЫКАЛЬНЫЙ ВЕЧЕР" },
   { value: "5–8", label: "ПАРТНЁРСКИХ СЛОТОВ" },
-  { value: "12", label: "VIP-МЕСТ ДЛЯ ГЕНЕРАЛА" },
+  { value: "12", label: "VIP-СЛОТОВ ДЛЯ ПАРТНЁРОВ" },
 ];
 
 function StatCard({ value, label, index }: { key?: React.Key; value: string; label: string; index: number }) {
@@ -44,10 +44,9 @@ function StatCard({ value, label, index }: { key?: React.Key; value: string; lab
 
 const ModelStats = ({ openModalWithPreset }: ModelStatsProps) => {
   const section = useEditorOverrides("model-section");
-  const eyebrow = useEditorOverrides("model-eyebrow", { text: "BLOCK 04 // MODEL" });
-  const titleLeft = useEditorOverrides("model-title-left", { text: "МОДЕЛЬ" });
-  const titleRight = useEditorOverrides("model-title-right", { text: "ЦИФРЫ" });
-  const button = useEditorOverrides("model-button", { text: "Обсудить слот" });
+  const eyebrow = useEditorOverrides("model-eyebrow", { text: "BLOCK 04 // PROJECT METRICS" });
+  const title = useEditorOverrides("model-title", { text: "ЦИФРЫ ПРОЕКТА" });
+  const button = useEditorOverrides("model-button", { text: "Обсудить участие" });
 
   return (
     <section id="model-stats" {...section.bind} style={section.style} className="w-full border-t border-zinc-900 bg-[#08080C] px-6 py-20 sm:px-12 lg:px-20 xl:px-32">
@@ -57,15 +56,13 @@ const ModelStats = ({ openModalWithPreset }: ModelStatsProps) => {
             <span {...eyebrow.bind} style={eyebrow.style} className="inline-block border border-[#BEEB08]/20 bg-[#BEEB08]/10 px-4 py-2 text-[10px] font-mono font-black uppercase tracking-[0.35em] text-[#BEEB08]">
               {eyebrow.text}
             </span>
-            <h2 className="font-display text-4xl font-black uppercase leading-none tracking-tighter text-white sm:text-6xl">
-              <span {...titleLeft.bind} style={titleLeft.style}>{titleLeft.text}</span>{" "}
-              <span className="text-[#FF007F]">&amp;</span>{" "}
-              <span {...titleRight.bind} style={titleRight.style}>{titleRight.text}</span>
+            <h2 {...title.bind} style={title.style} className="font-display text-4xl font-black uppercase leading-none tracking-tighter text-white sm:text-6xl">
+              {title.text}
             </h2>
           </div>
 
           <button
-            onClick={() => openModalWithPreset("Заявка на партнёрский слот")}
+            onClick={() => openModalWithPreset("Заявка на партнёрское участие")}
             {...button.bind}
             style={button.style}
             className="w-full border border-zinc-800 bg-black px-8 py-4 text-xs font-mono font-black uppercase tracking-[0.28em] text-white transition-all hover:border-[#BEEB08] hover:text-[#BEEB08] lg:w-auto"

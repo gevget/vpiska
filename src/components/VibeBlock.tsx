@@ -63,7 +63,7 @@ const VibeBlock = () => {
         {VIBE_EVENT_PHOTOS.map((photo, index) => (
           <div
             key={`${photo.src}-${index}`}
-            className="group relative aspect-[4/3] w-[400px] flex-shrink-0 overflow-hidden border border-zinc-700 transition-all duration-700 sm:w-[580px] lg:w-[840px]"
+            className="group relative aspect-[4/3] w-[82vw] max-w-[400px] flex-shrink-0 overflow-hidden border border-zinc-700 transition-all duration-700 sm:w-[580px] lg:w-[840px]"
           >
             <img
               src={photo.src}
@@ -71,7 +71,7 @@ const VibeBlock = () => {
               loading="lazy"
               className="h-full w-full object-cover transition-transform duration-1000 group-hover:scale-[1.03]"
             />
-            <div className="absolute inset-0 bg-gradient-to-t from-black/35 via-transparent to-transparent" />
+            <div className="absolute inset-0 bg-gradient-to-t from-black/25 via-transparent to-transparent sm:from-black/35" />
           </div>
         ))}
       </div>
