@@ -1,4 +1,4 @@
-import React, { useState, useEffect, Suspense, lazy } from "react";
+import React, { Suspense, lazy, useEffect, useState } from "react";
 import { motion } from "motion/react";
 
 import { HERO_EVENT_PHOTO, TOP_TAPE_EVENT_PHOTOS } from "./data";
@@ -22,8 +22,8 @@ const UseCases = lazy(() => import("./components/UseCases"));
 const PartnerArsenal = lazy(() => import("./components/PartnerArsenal"));
 
 const SectionFallback = () => (
-  <div className="w-full h-64 bg-zinc-950/20 animate-pulse flex items-center justify-center border-y border-zinc-900">
-    <div className="text-[10px] font-mono text-zinc-800 tracking-[0.5em] uppercase">Loading System Block...</div>
+  <div className="flex h-64 w-full items-center justify-center border-y border-zinc-800 bg-zinc-950/20 animate-pulse">
+    <div className="text-[10px] font-mono uppercase tracking-[0.5em] text-zinc-700">Loading System Block...</div>
   </div>
 );
 
@@ -46,6 +46,7 @@ export default function App() {
         second: "2-digit",
         hour12: false,
       };
+
       try {
         const formatter = new Intl.DateTimeFormat("ru-RU", options);
         setCurrentTime(formatter.format(now));
@@ -76,10 +77,12 @@ export default function App() {
         mainGain = ctx.createGain();
         mainGain.gain.setValueAtTime(0, ctx.currentTime);
         mainGain.gain.linearRampToValueAtTime(0.08, ctx.currentTime + 1.2);
+
         filter = ctx.createBiquadFilter();
         filter.type = "lowpass";
         filter.frequency.setValueAtTime(450, ctx.currentTime);
         filter.Q.setValueAtTime(6, ctx.currentTime);
+
         lfo = ctx.createOscillator();
         lfo.type = "sine";
         lfo.frequency.setValueAtTime(0.12, ctx.currentTime);
@@ -94,8 +97,7 @@ export default function App() {
           const osc = ctx!.createOscillator();
           const oscGain = ctx!.createGain();
           osc.type = idx % 2 === 0 ? "sawtooth" : "triangle";
-          const detuneAmount = Math.sin(idx) * 0.4;
-          osc.frequency.setValueAtTime(freq + detuneAmount, ctx!.currentTime);
+          osc.frequency.setValueAtTime(freq + Math.sin(idx) * 0.4, ctx!.currentTime);
           oscGain.gain.setValueAtTime(idx === 0 ? 0.25 : 0.08, ctx!.currentTime);
           osc.connect(oscGain);
           oscGain.connect(filter!);
@@ -105,8 +107,8 @@ export default function App() {
 
         filter.connect(mainGain);
         mainGain.connect(ctx.destination);
-      } catch (e) {
-        console.warn("Web Audio API not supported", e);
+      } catch (error) {
+        console.warn("Web Audio API not supported", error);
       }
     }
 
@@ -121,15 +123,19 @@ export default function App() {
                 osc.stop();
               } catch {}
             });
+
             if (lfo) {
               try {
                 lfo.stop();
               } catch {}
             }
-            if (ctx && ctx.state !== "closed") ctx.close();
+
+            if (ctx && ctx.state !== "closed") {
+              ctx.close();
+            }
           }, 450);
-        } catch (e) {
-          console.error(e);
+        } catch (error) {
+          console.error(error);
         }
       }
     };
@@ -149,7 +155,7 @@ export default function App() {
   const heroStatus = useEditorOverrides("hero-status", { text: "1 слот генерала доступен" });
 
   return (
-    <div className="min-h-screen bg-[#050505] text-white font-sans selection:bg-[#FF007F] selection:text-[#050505] noise-overlay relative overflow-x-hidden scroll-smooth">
+    <div className="relative min-h-screen overflow-x-hidden bg-[#050505] font-sans text-white selection:bg-[#FF007F] selection:text-[#050505] noise-overlay scroll-smooth">
       <StructuredData />
       <Header />
 
@@ -158,70 +164,88 @@ export default function App() {
           id="hero"
           {...heroSection.bind}
           style={heroSection.style}
-          className="w-full relative min-h-[85vh] flex items-center border-b border-zinc-900 overflow-hidden"
+          className="relative flex min-h-[85vh] w-full items-center overflow-hidden border-b border-zinc-800"
         >
           <div className="absolute inset-0 z-0">
-            <img src={HERO_EVENT_PHOTO} alt="Digital Вписка Atmosphere" className="w-full h-full object-cover opacity-35 scale-105" />
-            <div className="absolute inset-0 bg-gradient-to-t from-[#050505] via-black/20 to-[#050505]" />
+            <img
+              src={HERO_EVENT_PHOTO}
+              alt="Digital Вписка Atmosphere"
+              className="h-full w-full scale-105 object-cover opacity-40"
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-[#050505] via-black/25 to-[#050505]" />
           </div>
 
-          <div className="w-full max-w-[2000px] mx-auto px-6 sm:px-12 lg:px-24 relative z-10 py-20">
+          <div className="relative z-10 mx-auto w-full max-w-[2000px] px-6 py-20 sm:px-12 lg:px-24">
             <div className="max-w-4xl space-y-10">
               <div className="space-y-4">
                 <span
                   {...heroBadge.bind}
                   style={heroBadge.style}
-                  className="inline-block text-[10px] font-mono tracking-[0.5em] text-[#00FF41] uppercase bg-[#00FF41]/5 px-3 py-1.5 border border-[#00FF41]/20"
+                  className="inline-block border border-[#00FF41]/25 bg-[#00FF41]/5 px-3 py-1.5 text-[10px] font-mono uppercase tracking-[0.5em] text-[#00FF41]"
                 >
                   {heroBadge.text}
                 </span>
-                <h1 className="text-5xl sm:text-7xl lg:text-8xl font-display font-black tracking-tighter text-white uppercase leading-[0.85]">
+                <h1 className="font-display text-5xl font-black uppercase leading-[0.85] tracking-tighter text-white sm:text-7xl lg:text-8xl">
                   DIGITAL <br />
-                  <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#FF007F] to-[#00FF41] neon-glow-pink">ВПИСКА</span>
+                  <span className="bg-gradient-to-r from-[#FF007F] to-[#00FF41] bg-clip-text text-transparent neon-glow-pink">
+                    ВПИСКА
+                  </span>
                 </h1>
                 <p
                   {...heroSubtitle.bind}
                   style={heroSubtitle.style}
-                  className="text-lg sm:text-xl font-mono text-zinc-300 uppercase tracking-[0.2em] max-w-2xl leading-relaxed"
+                  className="max-w-2xl text-lg font-mono uppercase leading-relaxed tracking-[0.2em] text-zinc-200 sm:text-xl"
                 >
                   {heroSubtitle.text}
                 </p>
               </div>
 
-              <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-6">
+              <div className="flex flex-col gap-6 sm:flex-row sm:items-stretch">
                 <button
                   onClick={() => openModalWithPreset("Прямое обращение из Hero-блока")}
                   {...heroCta.bind}
                   style={heroCta.style}
-                  className="px-10 py-5 bg-[#FF007F] text-white font-mono font-black text-xs uppercase tracking-[0.3em] hover:bg-white hover:text-black transition-all duration-500 cursor-pointer text-center shadow-[0_0_40px_rgba(255,0,127,0.2)]"
+                  className="flex min-h-[76px] items-center justify-center bg-[#FF007F] px-10 py-5 text-center text-xs font-black uppercase tracking-[0.3em] text-white shadow-[0_0_40px_rgba(255,0,127,0.2)] transition-all duration-500 hover:bg-white hover:text-black"
                 >
                   {heroCta.text}
                 </button>
-                <div className="flex items-center gap-4 p-4 bg-black/40 border border-zinc-800 backdrop-blur-sm">
-                  <div className="w-10 h-10 rounded-full border border-[#00FF41]/20 flex items-center justify-center">
-                    <span className="w-1.5 h-1.5 rounded-full bg-[#00FF41] animate-ping" />
+
+                <div className="flex min-h-[76px] items-center gap-4 border border-zinc-600 bg-black/50 px-5 py-4 backdrop-blur-sm">
+                  <div className="flex h-10 w-10 items-center justify-center rounded-full border border-[#00FF41]/30">
+                    <span className="h-1.5 w-1.5 rounded-full bg-[#00FF41] animate-ping" />
                   </div>
                   <div>
-                    <span className="block text-[10px] text-zinc-500 uppercase font-black tracking-widest">STATUS:</span>
+                    <span className="block text-[10px] font-black uppercase tracking-widest text-zinc-500">STATUS:</span>
                     <span
                       {...heroStatus.bind}
                       style={heroStatus.style}
-                      className="text-xs font-mono text-[#00FF41] font-black uppercase tracking-widest"
+                      className="text-xs font-mono font-black uppercase tracking-widest text-[#00FF41]"
                     >
                       {heroStatus.text}
                     </span>
                   </div>
                 </div>
               </div>
+
+              <div className="text-[10px] font-mono uppercase tracking-[0.35em] text-zinc-500">
+                Moscow time // {currentTime}
+              </div>
             </div>
           </div>
         </section>
 
-        <div className="w-full overflow-hidden border-b border-zinc-900 bg-black py-8">
-          <motion.div className="flex whitespace-nowrap gap-6" animate={{ x: ["0%", "-50%"] }} transition={{ duration: 100, repeat: Infinity, ease: "linear" }}>
-            {[...TOP_TAPE_EVENT_PHOTOS, ...TOP_TAPE_EVENT_PHOTOS, ...TOP_TAPE_EVENT_PHOTOS].map((p, i) => (
-              <div key={i} className="w-[350px] aspect-[16/9] flex-shrink-0 border border-zinc-900 grayscale opacity-40 hover:opacity-100 hover:grayscale-0 transition-all duration-700">
-                <img src={p.src} alt={p.alt} loading="lazy" className="w-full h-full object-cover" />
+        <div className="w-full overflow-hidden border-b border-zinc-800 bg-black py-8">
+          <motion.div
+            className="flex gap-6 whitespace-nowrap"
+            animate={{ x: ["0%", "-50%"] }}
+            transition={{ duration: 100, repeat: Infinity, ease: "linear" }}
+          >
+            {[...TOP_TAPE_EVENT_PHOTOS, ...TOP_TAPE_EVENT_PHOTOS, ...TOP_TAPE_EVENT_PHOTOS].map((photo, index) => (
+              <div
+                key={index}
+                className="aspect-[16/9] w-[350px] flex-shrink-0 border border-zinc-700 grayscale opacity-40 transition-all duration-700 hover:grayscale-0 hover:opacity-100"
+              >
+                <img src={photo.src} alt={photo.alt} loading="lazy" className="h-full w-full object-cover" />
               </div>
             ))}
           </motion.div>
@@ -253,22 +277,31 @@ export default function App() {
         </Suspense>
       </main>
 
-      <footer className="py-20 px-6 sm:px-12 border-t border-zinc-900 bg-black text-center space-y-10">
-        <div className="max-w-2xl mx-auto space-y-6">
-          <p className="text-sm font-mono text-zinc-500 uppercase tracking-widest">
-            B2B координация проекта: Вадим Акимов, Александр Кубанейшвили, Евгений Толченков.
+      <footer className="space-y-10 border-t border-zinc-800 bg-black px-6 py-20 text-center sm:px-12">
+        <div className="mx-auto max-w-2xl space-y-6">
+          <p className="text-sm font-mono uppercase tracking-widest text-zinc-500">
+            B2B-координация проекта: Вадим Акимов, Александр Кубанейшвили, Евгений Толченков.
           </p>
         </div>
+
         <div className="flex flex-wrap justify-center gap-8">
-          <a href="https://t.me/gevget" target="_blank" rel="noopener noreferrer" className="text-[10px] font-mono text-zinc-700 hover:text-[#00FF41] transition-colors border border-zinc-900 px-4 py-2 font-black">Telegram: @gevget</a>
+          <a
+            href="https://t.me/gevget"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="border border-zinc-700 px-4 py-2 text-[10px] font-mono font-black text-zinc-300 transition-colors hover:text-[#00FF41]"
+          >
+            Telegram: @gevget
+          </a>
         </div>
-        <div className="text-[11px] font-mono text-zinc-600">
+
+        <div className="text-[11px] font-mono text-zinc-500">
           Сделано с{" "}
           <a
             href="https://tolk-usite.com/"
             target="_blank"
             rel="noopener noreferrer"
-            className="text-zinc-300 hover:text-[#00FF41] transition-colors"
+            className="text-zinc-200 transition-colors hover:text-[#00FF41]"
           >
             Толком
           </a>

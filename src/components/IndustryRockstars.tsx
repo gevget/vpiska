@@ -1,6 +1,7 @@
 import React from "react";
 import { Mic2 } from "lucide-react";
 import { motion } from "motion/react";
+
 import { useEditorOverrides } from "../editor/useEditorOverrides";
 
 const LINEUP_ROLES = [
@@ -34,11 +35,11 @@ function RockstarsParagraph({ text, index }: { key?: React.Key; text: string; in
     <p
       {...paragraphOverride.bind}
       style={paragraphOverride.style}
-      className={`font-sans leading-relaxed ${
+      className={
         index >= 3
           ? "text-2xl font-black uppercase tracking-[0.14em] text-white sm:text-3xl"
-          : "text-base text-zinc-300 sm:text-lg"
-      }`}
+          : "text-base leading-relaxed text-zinc-300 sm:text-lg"
+      }
     >
       {paragraphOverride.text}
     </p>
@@ -54,14 +55,14 @@ function RockstarsStat({ value, label, index }: { key?: React.Key; value: string
       <div
         {...statValue.bind}
         style={statValue.style}
-        className="text-4xl font-display font-black uppercase leading-none tracking-tight text-[#00FF41] sm:text-5xl"
+        className="text-4xl font-display font-black leading-none tracking-tight text-[#00FF41] sm:text-5xl"
       >
         {statValue.text}
       </div>
       <div
         {...statLabel.bind}
         style={statLabel.style}
-        className="mt-3 max-w-[14ch] font-mono text-[10px] font-black uppercase tracking-[0.3em] text-zinc-500"
+        className="mt-3 max-w-[14ch] text-[10px] font-mono font-black uppercase tracking-[0.3em] text-zinc-500"
       >
         {statLabel.text}
       </div>
@@ -81,14 +82,14 @@ function LineupCard({ role, index }: { key?: React.Key; role: string; index: num
       whileHover={{ y: -4 }}
       {...card.bind}
       style={card.style}
-      className="group relative overflow-hidden border border-zinc-800 bg-[linear-gradient(180deg,#111114_0%,#090909_100%)] p-6 transition-colors duration-300 hover:border-[#00FF41]/40"
+      className="group relative overflow-hidden border border-zinc-700 bg-[linear-gradient(180deg,#111114_0%,#090909_100%)] p-6 transition-colors duration-300 hover:border-[#00FF41]/50"
     >
       <div className="absolute inset-x-0 top-0 h-1 bg-gradient-to-r from-[#FF007F] via-[#00FF41] to-transparent opacity-70" />
       <div className="mb-8 flex items-center justify-between gap-4">
         <span
           {...slotOverride.bind}
           style={slotOverride.style}
-          className="font-mono text-[10px] font-black uppercase tracking-[0.35em] text-zinc-500"
+          className="text-[10px] font-mono font-black uppercase tracking-[0.35em] text-zinc-500"
         >
           {slotOverride.text}
         </span>
@@ -97,13 +98,9 @@ function LineupCard({ role, index }: { key?: React.Key; role: string; index: num
       <div
         {...roleOverride.bind}
         style={roleOverride.style}
-        className="max-w-[12ch] whitespace-pre-line font-display text-3xl font-black uppercase leading-[0.9] tracking-tight text-white"
+        className="font-display max-w-[12ch] whitespace-pre-line text-3xl font-black uppercase leading-[0.9] tracking-tight text-white"
       >
         {roleOverride.text}
-      </div>
-      <div className="mt-8 flex items-center gap-2">
-        <span className="h-2 w-2 rounded-full bg-[#00FF41]" />
-        <span className="font-mono text-[10px] uppercase tracking-[0.28em] text-zinc-600">Festival lineup aesthetics</span>
       </div>
     </motion.div>
   );
@@ -124,7 +121,7 @@ const IndustryRockstars = () => {
       id="industry-rockstars"
       {...section.bind}
       style={section.style}
-      className="w-full border-b border-zinc-900 bg-[#050505] px-6 py-24 sm:px-12 lg:px-20 xl:px-32 xl:py-36"
+      className="w-full border-b border-zinc-800 bg-[#050505] px-6 py-24 sm:px-12 lg:px-20 xl:px-32 xl:py-36"
     >
       <div className="mx-auto grid w-full max-w-[2000px] grid-cols-1 gap-16 lg:grid-cols-[1.1fr_0.9fr] lg:gap-12 xl:gap-20">
         <div className="space-y-10">
@@ -132,14 +129,14 @@ const IndustryRockstars = () => {
             <span
               {...eyebrow.bind}
               style={eyebrow.style}
-              className="inline-block border border-[#FF007F]/25 bg-[#FF007F]/10 px-4 py-2 font-mono text-[10px] font-black uppercase tracking-[0.4em] text-[#FF007F]"
+              className="inline-block border border-[#FF007F]/25 bg-[#FF007F]/10 px-4 py-2 text-[10px] font-mono font-black uppercase tracking-[0.4em] text-[#FF007F]"
             >
               {eyebrow.text}
             </span>
             <h2
               {...title.bind}
               style={title.style}
-              className="max-w-[10ch] whitespace-pre-line text-5xl font-display font-black uppercase leading-[0.84] tracking-[-0.04em] text-white sm:text-6xl lg:text-7xl xl:text-[5.5rem]"
+              className="font-display max-w-[10ch] whitespace-pre-line text-5xl font-black uppercase leading-[0.84] tracking-[-0.04em] text-white sm:text-6xl lg:text-7xl xl:text-[5.5rem]"
             >
               {title.text}
             </h2>
@@ -151,7 +148,7 @@ const IndustryRockstars = () => {
             ))}
           </div>
 
-          <div className="grid grid-cols-2 gap-px border border-zinc-900 bg-zinc-900 md:grid-cols-4">
+          <div className="grid grid-cols-2 gap-px border border-zinc-700 bg-zinc-700 md:grid-cols-4">
             {STATS.map((item, index) => (
               <RockstarsStat key={item.label} value={item.value} label={item.label} index={index} />
             ))}
@@ -160,19 +157,16 @@ const IndustryRockstars = () => {
           <p
             {...signature.bind}
             style={signature.style}
-            className="max-w-2xl border-l-2 border-[#00FF41] pl-5 font-sans text-sm leading-relaxed text-zinc-400 sm:text-base"
+            className="max-w-2xl border-l-2 border-[#00FF41] pl-5 text-sm leading-relaxed text-zinc-400 sm:text-base"
           >
             {signature.text}
           </p>
         </div>
 
-        <div className="relative">
-          <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(255,0,127,0.18),transparent_45%),radial-gradient(circle_at_bottom_left,rgba(0,255,65,0.16),transparent_40%)]" />
-          <div className="relative grid gap-4 sm:grid-cols-2">
-            {LINEUP_ROLES.map((role, index) => (
-              <LineupCard key={role} role={role} index={index} />
-            ))}
-          </div>
+        <div className="grid gap-4 sm:grid-cols-2">
+          {LINEUP_ROLES.map((role, index) => (
+            <LineupCard key={role} role={role} index={index} />
+          ))}
         </div>
       </div>
     </section>

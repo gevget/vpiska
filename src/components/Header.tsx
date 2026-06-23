@@ -1,6 +1,7 @@
-import React, { useState, useEffect } from "react";
-import { Menu, X, ArrowRight } from "lucide-react";
-import { motion, AnimatePresence } from "motion/react";
+import React, { useEffect, useState } from "react";
+import { ArrowRight, Menu, X } from "lucide-react";
+import { AnimatePresence, motion } from "motion/react";
+
 import { withBase } from "../lib/asset";
 
 const NAV_LINKS = [
@@ -15,6 +16,7 @@ const NAV_LINKS = [
 const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const [activeSection, setActiveSection] = useState("#benefits-block");
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 50);
@@ -22,9 +24,35 @@ const Header = () => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  useEffect(() => {
+    const sections = NAV_LINKS.map((link) => document.querySelector(link.href)).filter(Boolean) as Element[];
+    if (!sections.length) return;
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        const visible = entries
+          .filter((entry) => entry.isIntersecting)
+          .sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
+
+        if (visible?.target instanceof HTMLElement) {
+          setActiveSection(`#${visible.target.id}`);
+        }
+      },
+      {
+        rootMargin: "-35% 0px -45% 0px",
+        threshold: [0.2, 0.35, 0.5, 0.7],
+      },
+    );
+
+    sections.forEach((section) => observer.observe(section));
+    return () => observer.disconnect();
+  }, []);
+
   const scrollToSection = (href: string) => {
     setIsOpen(false);
+    setActiveSection(href);
     const element = document.querySelector(href);
+
     if (element) {
       const offset = 80;
       const bodyRect = document.body.getBoundingClientRect().top;
@@ -42,53 +70,57 @@ const Header = () => {
   return (
     <>
       <nav
-        className={`fixed top-0 left-0 w-full z-[100] transition-all duration-500 ${
-          scrolled ? "bg-black/80 backdrop-blur-xl border-b border-zinc-900 py-4" : "bg-transparent py-8"
+        className={`fixed left-0 top-0 z-[100] w-full transition-all duration-500 ${
+          scrolled ? "border-b border-zinc-800 bg-black/80 py-4 backdrop-blur-xl" : "bg-transparent py-8"
         }`}
       >
-        <div className="max-w-[2000px] mx-auto px-6 sm:px-12 lg:px-20 xl:px-32 flex items-center justify-between gap-6">
-          <div className="group cursor-pointer flex items-center" onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}>
+        <div className="mx-auto flex max-w-[2000px] items-center justify-between gap-6 px-6 sm:px-12 lg:px-20 xl:px-32">
+          <div className="group flex cursor-pointer items-center" onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}>
             <img
               src={withBase("/logo-tolk-vpiska.png")}
               alt="Digital Вписка"
-              className="h-12 w-auto group-hover:opacity-80 transition-opacity"
+              className="h-12 w-auto transition-opacity group-hover:opacity-80"
             />
           </div>
 
-          <div className="hidden lg:flex items-center gap-10">
-            <div className="flex items-center gap-3 pr-4 border-r border-zinc-900">
-              <span className="text-[11px] font-mono text-zinc-600">TG:</span>
+          <div className="hidden items-center gap-10 lg:flex">
+            <div className="flex items-center gap-3 border-r border-zinc-800 pr-4">
+              <span className="text-[11px] font-mono text-zinc-500">TG:</span>
               <a
                 href="https://t.me/gevget"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-[11px] font-mono font-black text-[#00FF41] hover:text-white transition-colors"
+                className="text-[11px] font-mono font-black text-[#00FF41] transition-colors hover:text-white"
               >
                 @gevget
               </a>
             </div>
+
             {NAV_LINKS.map((link) => (
               <button
                 key={link.name}
                 onClick={() => scrollToSection(link.href)}
-                className="text-[11px] font-mono font-black uppercase tracking-[0.2em] text-zinc-500 hover:text-[#00FF41] transition-colors"
+                className={`text-[11px] font-mono font-black uppercase tracking-[0.2em] transition-colors ${
+                  activeSection === link.href ? "text-[#00FF41] neon-glow-green" : "text-zinc-400 hover:text-[#00FF41]"
+                }`}
               >
                 {link.name}
               </button>
             ))}
+
             <button
               onClick={() => scrollToSection("#contact-form")}
-              className="px-6 py-2 bg-white text-black font-mono font-black text-[11px] uppercase tracking-widest hover:bg-[#00FF41] transition-all flex items-center gap-2 group"
+              className="group flex items-center gap-2 bg-white px-6 py-2 text-[11px] font-mono font-black uppercase tracking-widest text-black transition-all hover:bg-[#00FF41]"
             >
-              Участвовать <ArrowRight className="w-3 h-3 group-hover:translate-x-1 transition-transform" />
+              Участвовать <ArrowRight className="h-3 w-3 transition-transform group-hover:translate-x-1" />
             </button>
           </div>
 
           <button
-            className="lg:hidden w-10 h-10 border border-zinc-800 flex items-center justify-center text-white"
+            className="flex h-10 w-10 items-center justify-center border border-zinc-700 text-white lg:hidden"
             onClick={() => setIsOpen(true)}
           >
-            <Menu className="w-5 h-5" />
+            <Menu className="h-5 w-5" />
           </button>
         </div>
       </nav>
@@ -100,41 +132,43 @@ const Header = () => {
             animate={{ opacity: 1, x: 0 }}
             exit={{ opacity: 0, x: "100%" }}
             transition={{ type: "spring", damping: 25, stiffness: 200 }}
-            className="fixed inset-0 z-[110] bg-black flex flex-col p-8 sm:p-12 lg:hidden"
+            className="fixed inset-0 z-[110] flex flex-col bg-black p-8 sm:p-12 lg:hidden"
           >
-            <div className="flex justify-between items-center mb-20 gap-4">
+            <div className="mb-20 flex items-center justify-between gap-4">
               <img src={withBase("/logo-tolk-vpiska.png")} alt="Digital Вписка" className="h-12 w-auto" />
               <button
                 onClick={() => setIsOpen(false)}
-                className="w-12 h-12 border border-zinc-900 flex items-center justify-center text-zinc-500 hover:text-white"
+                className="flex h-12 w-12 items-center justify-center border border-zinc-800 text-zinc-400 hover:text-white"
               >
-                <X className="w-6 h-6" />
+                <X className="h-6 w-6" />
               </button>
             </div>
 
             <div className="space-y-8">
               {NAV_LINKS.map((link, idx) => (
                 <motion.button
+                  key={link.name}
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.1 + idx * 0.05 }}
-                  key={link.name}
                   onClick={() => scrollToSection(link.href)}
-                  className="block text-4xl sm:text-5xl font-display font-black uppercase text-left tracking-tighter text-zinc-800 hover:text-[#00FF41] transition-colors"
+                  className={`block text-left text-4xl font-display font-black uppercase tracking-tighter transition-colors sm:text-5xl ${
+                    activeSection === link.href ? "text-[#00FF41]" : "text-zinc-700 hover:text-[#00FF41]"
+                  }`}
                 >
                   {link.name}
                 </motion.button>
               ))}
             </div>
 
-            <div className="mt-auto pt-10 border-t border-zinc-900 flex flex-col gap-8">
+            <div className="mt-auto flex flex-col gap-8 border-t border-zinc-800 pt-10">
               <button
                 onClick={() => scrollToSection("#contact-form")}
-                className="w-full py-5 bg-[#00FF41] text-black font-mono font-black text-xs uppercase tracking-[0.2em] hover:bg-white transition-all flex items-center justify-center gap-3"
+                className="flex w-full items-center justify-center gap-3 bg-[#00FF41] py-5 text-xs font-mono font-black uppercase tracking-[0.2em] text-black transition-all hover:bg-white"
               >
-                Стать партнёром <ArrowRight className="w-4 h-4" />
+                Стать партнёром <ArrowRight className="h-4 w-4" />
               </button>
-              <div className="flex flex-wrap gap-6 text-zinc-500 font-mono text-[10px] uppercase tracking-widest">
+              <div className="flex flex-wrap gap-6 text-[10px] font-mono uppercase tracking-widest text-zinc-500">
                 <span>TG: @gevget</span>
               </div>
             </div>
